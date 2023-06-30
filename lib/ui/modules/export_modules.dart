@@ -1,1 +1,1 @@
-export '';
+export 'package:pay_2_me/ui/modules/auth/export_auth.dart';

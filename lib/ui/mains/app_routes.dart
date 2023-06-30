@@ -3,7 +3,8 @@ import 'package:pay_2_me/ui/modules/export_modules.dart';
 
 class AppRoutes {
   GlobalKey? navigatorKey;
-  static const AUTH_OR_HOME = '/';
+  static const AUTH = '/';
+  // static const AUTH_OR_HOME = '/';
 
   static const LOGIN = '/login';
   // static const SIGNUP = '/signup';
@@ -11,6 +12,7 @@ class AppRoutes {
   static const INDEX = '/index';
 
   static Map<String, WidgetBuilder> routes = {
+    AUTH: (ctx) => const LoginAuthPage(),
     // AUTH_OR_HOME: (ctx) => AuthOrIndexPage(),
 
     // LOGIN: (ctx) => LoginPage(),

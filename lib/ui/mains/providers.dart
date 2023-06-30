@@ -7,7 +7,7 @@ class Providers {
 
         // ChangeNotifierProvider(create: (_) => SignupStore()),
         // ChangeNotifierProvider(create: (_) => LoginStore()),
-        // ChangeNotifierProvider(create: (_) => ServicesAuthStore()),
+        ChangeNotifierProvider(create: (_) => ServicesAuthStore()),
         // ChangeNotifierProvider(create: (_) => FormAuthStore()),
 
         // ChangeNotifierProvider(create: (_) => AuthOrIndexStore()),
