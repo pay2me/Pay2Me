@@ -25,4 +25,11 @@ class SetPayerMapper {
     payerAddress = SetAddressMapper.MapFromJson(json['payerAddress']);
     payerCard = SetCardMapper.MapFromJson(json['payerCard']);
   }
+
+   Map<String, dynamic> mapToFilter() {
+    return {
+      "id": payerId,
+      "name": payerName??"",
+    };
+  }
 }

@@ -4,14 +4,12 @@ import 'package:pay_2_me/ui/mains/app_routes.dart';
 
 class CustomTabScaffold extends StatelessWidget {
   final String title;
-  final PageController pageController;
   final List<Widget>? actionsAppBar;
   final Widget? body;
   final Widget? bottomSheet;
 
   const CustomTabScaffold({
     required this.title,
-    required this.pageController,
     this.body,
     this.bottomSheet,
     this.actionsAppBar,
@@ -57,7 +55,6 @@ class CustomTabScaffold extends StatelessWidget {
           actions: actionsAppBar,
           iconTheme: Theme.of(context).iconTheme,
         ),
-        // drawer: CustomDrawerWidget(pageController),
         body: body,
         bottomSheet: bottomSheet,
       ),

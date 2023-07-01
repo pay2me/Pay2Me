@@ -11,6 +11,8 @@ class AppRoutes {
 
   static const INDEX = '/index';
 
+  static const CREATEPAYERPAGE = '/createpayerpage';
+
   static Map<String, WidgetBuilder> routes = {
     AUTH: (ctx) => const LoginAuthPage(),
     // AUTH_OR_HOME: (ctx) => AuthOrIndexPage(),
@@ -19,5 +21,7 @@ class AppRoutes {
     // // SIGNUP: (ctx) => const SignUpPage(),
 
     // INDEX: (ctx) => IndexPage(),
+
+    CREATEPAYERPAGE: (ctx) => const CreatePayerPage(),
   };
 }
