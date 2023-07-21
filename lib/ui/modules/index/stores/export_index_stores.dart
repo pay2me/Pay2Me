@@ -1,0 +1,1 @@
+export 'package:pay_2_me/ui/modules/index/stores/main_index.store.dart';
