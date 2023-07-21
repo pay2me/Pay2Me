@@ -14,13 +14,13 @@ class AppRoutes {
   static const CREATEPAYERPAGE = '/createpayerpage';
 
   static Map<String, WidgetBuilder> routes = {
-    AUTH: (ctx) => const LoginAuthPage(),
+    AUTH: (ctx) => LoginAuthPage(),
     // AUTH_OR_HOME: (ctx) => AuthOrIndexPage(),
 
     // LOGIN: (ctx) => LoginPage(),
     // // SIGNUP: (ctx) => const SignUpPage(),
 
-    // INDEX: (ctx) => IndexPage(),
+    INDEX: (ctx) => IndexPage(),
 
     CREATEPAYERPAGE: (ctx) => const CreatePayerPage(),
   };

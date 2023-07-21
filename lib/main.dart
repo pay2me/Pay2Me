@@ -16,7 +16,7 @@ class Pay2MeApp extends StatelessWidget {
     return MultiProvider(
       providers: Providers.providers,
       child: MaterialApp(
-        title: 'Semine',
+        title: 'Pay2Me',
         theme: CustomTheme.tema,
         routes: AppRoutes.routes,
         localizationsDelegates: const [
