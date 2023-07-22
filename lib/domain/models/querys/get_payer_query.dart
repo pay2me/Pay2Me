@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:pay_2_me/domain/models/export_models.dart';
 
 class GetPayerQuery {
@@ -7,10 +8,10 @@ class GetPayerQuery {
 
   GetPayerQuery({this.payers, this.success, this.code});
 
-  GetPayerQuery.MapFromJson(Map<String, dynamic> json) {
-    Iterable result = json['result'];
-    payers = result.map((i) => SetPayerMapper.MapFromJson(i)).toList();
-    code = json['code'];
-    success = json['success'];
+  GetPayerQuery.MapFromResponse(Response response) {
+    Iterable data = response.data;
+    payers = data.map((i) => SetPayerMapper.MapFromJson(i)).toList();
+    code = response.statusCode;
+    success = response.statusMessage=="OK"?true:false;
   }
 }

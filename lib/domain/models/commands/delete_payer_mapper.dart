@@ -6,6 +6,6 @@ class DeletePayerCommand {
   });
 
   Map<String, dynamic> MapToJson() => {
-    'payerId': payerId,
+    'name': payerId,
   };
 }

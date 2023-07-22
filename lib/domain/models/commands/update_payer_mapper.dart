@@ -18,7 +18,7 @@ class UpdatePayerCommand {
   });
 
   Map<String, dynamic> MapToJson() => {
-    'payerId': payerId,
+    'name': payerId,
     'payerName': payerName,
     'payerPhone': payerPhone,
     'payerCpf': payerCpf,

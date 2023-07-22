@@ -18,7 +18,7 @@ class SetPayerMapper {
   });
 
   SetPayerMapper.MapFromJson(Map<String, dynamic> json) {
-    payerId = json['payerId'];
+    payerId = json['name'];
     payerName = json['payerName'];
     payerPhone = json['payerPhone'];
     payerCpf = json['payerCpf'];
