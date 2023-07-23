@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:pay_2_me/domain/models/export_models.dart';
 
 class GetCardQuery {
@@ -7,10 +8,10 @@ class GetCardQuery {
 
   GetCardQuery({this.cards, this.success, this.code});
 
-  GetCardQuery.MapFromJson(Map<String, dynamic> json) {
-    Iterable result = json['result'];
-    cards = result.map((i) => SetCardMapper.MapFromJson(i)).toList();
-    code = json['code'];
-    success = json['success'];
+  GetCardQuery.MapFromResponse(Response response) {
+    Iterable data = response.data;
+    cards = data.map((i) => SetCardMapper.MapFromJson(i)).toList();
+    code = response.statusCode;
+    success = response.statusMessage=="OK"?true:false;
   }
 }

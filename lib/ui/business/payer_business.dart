@@ -5,7 +5,7 @@ class PayerBusiness {
 
   Future<List<SetPayerMapper>?> getAll(String token) async {
     try {
-      var service = new PayerService();
+      var service = PayerService();
       var result = await service.getAll(token);
 
       if(result.code == 406){

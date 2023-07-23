@@ -49,7 +49,7 @@ abstract class _MainPayerStore with Store, ChangeNotifier {
   Future<void> loadPayers(BuildContext  context) async {
     isLoading = true;
 
-    if (!(await isConected())) return null;
+    if (!(await isConected())) {isLoading = false; return;};
 
     _payerList = await Provider.of<ServicesPayerStore>(context, listen:false).getPayers(context);
     onLoadFromFilter(context);

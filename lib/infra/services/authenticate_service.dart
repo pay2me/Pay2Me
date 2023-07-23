@@ -24,21 +24,6 @@ class AuthenticateService  implements IAuthenticateService {
         "authorization": "Bearer ${token}",
       },
     ));
-    var result = response.data;
-
-    return result['code'];
+    return response.statusCode;
   }
-
-  // @override
-  // Future<int?> signup(CreateClientUserCommand command, String token) async {
-  //   var url = "${Settings.url}/clientUsers/create";
-  //   var response = await Dio().post(url, data: command.MapToJson(), options: Options(
-  //     headers: {
-  //       "authorization": "Bearer ${token}",
-  //     },
-  //   ));
-  //   var result = response.data;
-
-  //   return result['code'];
-  // }
 }

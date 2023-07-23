@@ -17,9 +17,21 @@ class PayerService implements IPayerService {
     var result = response.data;
     return GetPayerQuery.MapFromResponse(result);
   }
+
+  @override
+  Future<GetPayerQuery> getFromId(String token, String id) async {
+    var url = "${Settings.url}/payers/$id.json";
+    var response = await Dio().get(url, options: Options(
+      headers: {
+        "authorization": "Bearer $token",
+      },
+    ));
+    var result = response.data;
+    return GetPayerQuery.MapFromResponse(result);
+  }
   
   @override
-  Future<String?> insert(CreatePayerCommand command, String token) async {
+  Future<bool?> insert(CreatePayerCommand command, String token) async {
     var url = "${Settings.url}/payers.json";
     var response = await Dio().post(url, data: command.MapToJson(), options: Options(
       headers: {
@@ -27,11 +39,11 @@ class PayerService implements IPayerService {
       },
     ));
     var result = response.data;
-    return result["name"];
+    return result != null;
   }
 
   @override
-  Future<SetPayerMapper?> update(UpdatePayerCommand command, String token) async {
+  Future<bool?> update(UpdatePayerCommand command, String token) async {
     var url = "${Settings.url}/payers/${command.payerId}.json";
     var response = await Dio().patch(url, data: command.MapToJson(), options: Options(
       headers: {
@@ -39,7 +51,7 @@ class PayerService implements IPayerService {
       },
     ));
     var result = response.data;
-    return SetPayerMapper.MapFromJson(result);
+    return result != null;
   }
 
   @override
@@ -51,7 +63,6 @@ class PayerService implements IPayerService {
       },
     ));
     var result = response.data;
-
     return result == null;
   }
 }

@@ -11,7 +11,7 @@ class CustomTheme {
       secondary: Colors.white,
       onSecondary: Colors.black,
       tertiary:  Color.fromRGBO(255, 152, 12, 1), // #FF980C
-      shadow:  Color.fromARGB(255, 228, 228, 228),
+      shadow:  Color.fromARGB(255, 179, 179, 179),
       error:  Color.fromARGB(174, 255, 0, 0),
       onError: Colors.white,
       background: Colors.white,

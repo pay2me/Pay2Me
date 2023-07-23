@@ -28,17 +28,16 @@ class PayerTab extends StatelessWidget {
                 size: 25,
               ),
             ),
-            if (store.isAdmin)
-              IconButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(
-                    AppRoutes.CREATEPAYERPAGE,
-                  );
-                },
-                icon: const Icon(
-                  Icons.add,
-                ),
-              )
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  AppRoutes.CREATEPAYERPAGE,
+                );
+              },
+              icon: const Icon(
+                Icons.add,
+              ),
+            )
           ],
           body: Column(
             children: [
@@ -55,7 +54,7 @@ class PayerTab extends StatelessWidget {
                   : Expanded(
                       child: store.payersToOverviewCount == 0
                           ? const Center(
-                              child: Text('Nenhum payer encontrado'),
+                              child: Text('Nenhum pagador encontrado'),
                             )
                           : ListView.builder(
                               scrollDirection: Axis.vertical,
