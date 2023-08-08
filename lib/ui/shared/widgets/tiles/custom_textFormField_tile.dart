@@ -39,11 +39,11 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: labelText,
         labelStyle: TextStyle(
-          color: color??Theme.of(context).colorScheme.secondary,
+          color: color??Theme.of(context).colorScheme.shadow,
         ),
         hintText: hintText,
         hintStyle: TextStyle(
-          color: color??Theme.of(context).colorScheme.secondary,
+          color: color??Theme.of(context).colorScheme.shadow,
         ),
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,

@@ -36,7 +36,7 @@ abstract class _ServicesPayerStore with Store, ChangeNotifier {
       payerCard: payer.payerCard,
     );
 
-    return (await payerBusiness.insert(createPayerCommand, token!))??false;
+    return (await payerBusiness.insert(createPayerCommand, token!));
   }
 
   Future<bool> updatePayer(BuildContext context, SetPayerMapper payer, int previousAreaId) async {
@@ -51,7 +51,7 @@ abstract class _ServicesPayerStore with Store, ChangeNotifier {
       payerCard: payer.payerCard,
     );
 
-    return (await payerBusiness.update(editPayerCommand, token!))??false;
+    return (await payerBusiness.update(editPayerCommand, token!));
   }
 
   Future<bool> deletePayer(BuildContext context, SetPayerMapper payer) async {
@@ -61,6 +61,6 @@ abstract class _ServicesPayerStore with Store, ChangeNotifier {
       payerId: payer.payerId,
     );
 
-    return (await payerBusiness.delete(deletePayerCommand, token!))??false;
+    return (await payerBusiness.delete(deletePayerCommand, token!));
   }
 }

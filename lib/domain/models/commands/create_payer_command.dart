@@ -16,7 +16,7 @@ class CreatePayerCommand {
   });
 
   Map<String, dynamic> MapToJson() => {
-    'payerName': payerName,
+    'name': payerName,
     'payerPhone': payerPhone,
     'payerCpf': payerCpf,
     'payerAddress': payerAddress?.jsonFromMap(),
