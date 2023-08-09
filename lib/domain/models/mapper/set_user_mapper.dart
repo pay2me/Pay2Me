@@ -1,20 +1,20 @@
 class SetUserMapper {
   String? userId;
   String? userName;
-  String? userLogin;
+  String? userEmail;
   String? userPassword;
 
   SetUserMapper({
     this.userId,
     this.userName,
-    this.userLogin,
+    this.userEmail,
     this.userPassword,
   });
 
   SetUserMapper.MapFromJson(Map<String, dynamic> json) {
     userId = json['id'];
     userName = json['name'];
-    userLogin = json['login'];
+    userEmail = json['email'];
     userPassword = json['password'];
   }
 }

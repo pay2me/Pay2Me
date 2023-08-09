@@ -1,29 +1,51 @@
-import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:pay_2_me/domain/models/export_models.dart';
 import 'package:pay_2_me/domain/interfaces/export_interfaces.dart';
-import 'package:pay_2_me/infra/configs/export_configs.dart';
 
-class AuthenticateService  implements IAuthenticateService {
-
+class AuthenticateService implements IAuthenticateService {
   @override
   Future<GetAuthenticateQuery> login(String email, String password) async {
-    var url = "${Settings.url}/clientUsers/login?email=$email&password=$password";
-    var response = await Dio().post(url, options: Options(
-      headers: {},
-    ));
-    var result = response.data;
-    return GetAuthenticateQuery.MapFromJson(result);
+    final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+
+    Map<String, dynamic> json = {
+      'id': credential.user?.uid,
+      'name': credential.user?.displayName,
+      'email': credential.user?.email,
+      'token': credential.user?.refreshToken,
+    };
+
+    return GetAuthenticateQuery.MapFromJson(json);
   }
 
   @override
-  Future<int?> logout(String token) async {
-    var url = "${Settings.url}/clientUsers/logout";
-    var response = await Dio().post(url, options: Options(
-      headers: {
-        "authorization": "Bearer ${token}",
-      },
-    ));
-    return response.statusCode;
+  Future<GetAuthenticateQuery> signup(String email, String password) async {
+    UserCredential credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+
+    Map<String, dynamic> json = {
+      'id': credential.user?.uid,
+      'name': credential.user?.displayName,
+      'email': credential.user?.email,
+      'token': credential.user?.refreshToken,
+    };
+
+    return GetAuthenticateQuery.MapFromJson(json);
+  }
+
+  @override
+  Future<bool> logout() async {
+    await FirebaseAuth.instance.signOut();
+    return isAutheticate();
+  }
+
+  @override
+  Future<bool> isAutheticate() async {
+    User? currentUser = FirebaseAuth.instance.currentUser;
+
+    if(currentUser == null) true;
+    return false;
   }
 }
