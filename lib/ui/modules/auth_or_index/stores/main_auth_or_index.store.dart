@@ -24,6 +24,7 @@ abstract class _MainAuthOrIndexStore with Store, ChangeNotifier {
       else isAuth = true;
       
     } catch (e) {
+      isAuth = false;
     }
   }
 

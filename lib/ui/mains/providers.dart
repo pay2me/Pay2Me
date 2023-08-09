@@ -8,6 +8,9 @@ class Providers {
         ChangeNotifierProvider(create: (_) => LoginAuthStore()),
         ChangeNotifierProvider(create: (_) => ServicesAuthStore()),
 
+        ChangeNotifierProvider(create: (_) => MainAuthOrIndexStore()),
+        ChangeNotifierProvider(create: (_) => ServicesAuthOrIndexStore()),
+
         ChangeNotifierProvider(create: (_) => ServicesPayerStore()),
         ChangeNotifierProvider(create: (_) => MainPayerStore()),
 
