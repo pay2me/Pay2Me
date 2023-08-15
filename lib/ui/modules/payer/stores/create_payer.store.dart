@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pay_2_me/domain/models/export_models.dart';
+import 'package:pay_2_me/domain/models/mapper/set_service_mapper.dart';
 import 'package:provider/provider.dart';
-import 'package:pay_2_me/domain/models/mapper/set_payer_mapper.dart';
 import 'package:pay_2_me/ui/modules/payer/export_payer.dart';
 import 'package:pay_2_me/ui/shared/functions/formUtility.dart';
 
@@ -21,6 +21,7 @@ abstract class _CreatePayerStore with Store, ChangeNotifier {
   SetPayerMapper payerToForm = SetPayerMapper(
     payerAddress: SetAddressMapper(),
     payerCard: SetCardMapper(),
+    payerService: SetServiceMapper(),
   );
 
   Map<String, bool> validityOfFields = ObservableMap<String, bool>();

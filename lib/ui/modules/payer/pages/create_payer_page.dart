@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pay_2_me/ui/modules/payer/export_payer.dart';
+import 'package:pay_2_me/ui/shared/functions/dateUtility.dart';
 import 'package:pay_2_me/ui/shared/widgets/fields/custom_datePicker_field.dart';
 import 'package:pay_2_me/ui/shared/widgets/fields/custom_textFormField_container_field.dart';
 import 'package:pay_2_me/ui/shared/widgets/scaffolds/custom_form_scaffold.dart';
@@ -39,7 +40,18 @@ class CreatePayerPage extends StatelessWidget {
               ),
             ),
         form: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 7, vertical: 5),
+              child: Text(
+                "Cliente",
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+              ),
+            ),
+            const Divider(),
             Row(
               children: [
                 Expanded(
@@ -121,6 +133,16 @@ class CreatePayerPage extends StatelessWidget {
                 ),
               ],
             ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 7, vertical: 5),
+              child: Text(
+                "Cartão",
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+              ),
+            ),
+            const Divider(),
             Row(
               children: [
                 Expanded(
@@ -130,7 +152,7 @@ class CreatePayerPage extends StatelessWidget {
                     isWrong: !(store.validityOfFields["Número do cartão"] ?? true),
                     onTap: () => store.validityOfFields["Número do cartão"] = true,
                     onChanged: (value) => store.validityOfFields["Número do cartão"] = true,
-                    onSaved: (value) => store.payerToForm.payerAddress!.addressCity = value,
+                    onSaved: (value) => store.payerToForm.payerCard!.cardNumber = value,
                     validator: (value) => store.fieldValidator(context, "Número do cartão", value, false),
                   ),
                 ),
@@ -140,7 +162,7 @@ class CreatePayerPage extends StatelessWidget {
                     isWrong: !(store.validityOfFields["Nome no cartão"] ?? true),
                     onTap: () => store.validityOfFields["Nome no cartão"] = true,
                     onChanged: (value) => store.validityOfFields["Nome no cartão"] = true,
-                    onSaved: (value) => store.payerToForm.payerAddress!.addressState = value,
+                    onSaved: (value) => store.payerToForm.payerCard!.cardPrintedName = value,
                     validator: (value) => store.fieldValidator(context, "Nome no cartão", value, false),
                   ),
                 ),
@@ -152,7 +174,7 @@ class CreatePayerPage extends StatelessWidget {
                     isWrong: !(store.validityOfFields["Data de vencimento"] ?? true),
                     onTap: () => store.validityOfFields["Data de vencimento"] = true,
                     onChanged: (value) => store.validityOfFields["Data de vencimento"] = true,
-                    onSaved: (value) => store.payerToForm.payerAddress!.addressNeighborhood = value,
+                    onSaved: (value) => store.payerToForm.payerCard!.cardExpiryDate = DateUtility().adjustmentDateString(value),
                     validator: (value) => store.fieldValidator(context, "Data de vencimento", value, false),
                   ),
                 ),
@@ -163,12 +185,22 @@ class CreatePayerPage extends StatelessWidget {
                     isWrong: !(store.validityOfFields["CVV"] ?? true),
                     onTap: () => store.validityOfFields["CVV"] = true,
                     onChanged: (value) => store.validityOfFields["CVV"] = true,
-                    onSaved: (value) => store.payerToForm.payerAddress!.addressCEP = value,
+                    onSaved: (value) => store.payerToForm.payerCard!.cardCvv = value,
                     validator: (value) => store.fieldValidator(context, "CVV", value, false),
                   ),
                 ),
               ],
             ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 7, vertical: 5),
+              child: Text(
+                "Assinatura",
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+              ),
+            ),
+            const Divider(),
             Row(
               children: [
                 Expanded(
@@ -177,7 +209,7 @@ class CreatePayerPage extends StatelessWidget {
                     isWrong: !(store.validityOfFields["Serviço"] ?? true),
                     onTap: () => store.validityOfFields["Serviço"] = true,
                     onChanged: (value) => store.validityOfFields["Serviço"] = true,
-                    onSaved: (value) => store.payerToForm.payerAddress!.addressCity = value,
+                    onSaved: (value) => store.payerToForm.payerService!.serviceName = value,
                     validator: (value) => store.fieldValidator(context, "Serviço", value, false),
                   ),
                 ),
@@ -187,7 +219,7 @@ class CreatePayerPage extends StatelessWidget {
                     isWrong: !(store.validityOfFields["Frequência de pagamento"] ?? true),
                     onTap: () => store.validityOfFields["Frequência de pagamento"] = true,
                     onChanged: (value) => store.validityOfFields["Frequência de pagamento"] = true,
-                    onSaved: (value) => store.payerToForm.payerAddress!.addressState = value,
+                    onSaved: (value) => store.payerToForm.payerService!.serviceFrequency = value,
                     validator: (value) => store.fieldValidator(context, "Frequência de pagamento", value, false),
                   ),
                 ),
@@ -197,7 +229,7 @@ class CreatePayerPage extends StatelessWidget {
                     isWrong: !(store.validityOfFields["Valor"] ?? true),
                     onTap: () => store.validityOfFields["Valor"] = true,
                     onChanged: (value) => store.validityOfFields["Valor"] = true,
-                    onSaved: (value) => store.payerToForm.payerAddress!.addressNeighborhood = value,
+                    onSaved: (value) => store.payerToForm.payerService!.serviceValue = value,
                     validator: (value) => store.fieldValidator(context, "Valor", value, false),
                   ),
                 ),
@@ -209,7 +241,7 @@ class CreatePayerPage extends StatelessWidget {
                     isWrong: !(store.validityOfFields["Vencimento"] ?? true),
                     onTap: () => store.validityOfFields["Vencimento"] = true,
                     onChanged: (value) => store.validityOfFields["Vencimento"] = true,
-                    onSaved: (value) => store.payerToForm.payerAddress!.addressCEP = value,
+                    onSaved: (value) => store.payerToForm.payerService!.serviceSubscriptionExpirationDate = DateUtility().adjustmentDateString(value),
                     validator: (value) => store.fieldValidator(context, "Vencimento", value, false),
                   ),
                 ),
@@ -225,7 +257,7 @@ class CreatePayerPage extends StatelessWidget {
                     isWrong: !(store.validityOfFields["Vencimento do plano"] ?? true),
                     onTap: () => store.validityOfFields["Vencimento do plano"] = true,
                     onChanged: (value) => store.validityOfFields["Vencimento do plano"] = true,
-                    onSaved: (value) => store.payerToForm.payerAddress!.addressCity = value,
+                    onSaved: (value) => store.payerToForm.payerService!.serviceExpirationPlanDate = DateUtility().adjustmentDateString(value),
                     validator: (value) => store.fieldValidator(context, "Vencimento do plano", value, false),
                   ),
                 ),

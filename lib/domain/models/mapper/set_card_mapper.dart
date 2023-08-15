@@ -1,35 +1,31 @@
 class SetCardMapper {
   String? cardId;
   String? cardNumber;
-  String? cardCvv;
   String? cardPrintedName;
-  String? cardHolderCpf;
-  String? cardBillingAddress;
+  String? cardCvv;
+  String? cardExpiryDate;
 
   SetCardMapper({
     this.cardId,
     this.cardNumber,
-    this.cardCvv,
     this.cardPrintedName,
-    this.cardHolderCpf,
-    this.cardBillingAddress,
+    this.cardCvv,
+    this.cardExpiryDate,
   });
 
   SetCardMapper.MapFromJson(Map<String, dynamic> json) {
     cardId = json['cardId'];
     cardNumber = json['cardNumber'];
-    cardCvv = json['cardCvv'];
     cardPrintedName = json['cardPrintedName'];
-    cardHolderCpf = json['cardHolderCpf'];
-    cardBillingAddress = json['cardBillingAddress'];
+    cardCvv = json['cardCvv'];
+    cardExpiryDate = json['cardExpiryDate'];
   }
 
   Map<String, dynamic> jsonFromMap() => {
     'cardId': cardId,
     'cardNumber': cardNumber,
-    'cardCvv': cardCvv,
     'cardPrintedName': cardPrintedName,
-    'cardHolderCpf': cardHolderCpf,
-    'cardBillingAddress': cardBillingAddress,
+    'cardCvv': cardCvv,
+    'cardExpiryDate': cardExpiryDate,
   };
 }

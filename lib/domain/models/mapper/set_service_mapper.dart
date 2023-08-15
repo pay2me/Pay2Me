@@ -2,30 +2,30 @@ class SetServiceMapper {
   String? serviceName;
   String? serviceValue;
   String? serviceFrequency;
-  String? serviceExpirationPlaneDate;
-  String? serviceExpirationPortionDate;
+  String? serviceExpirationPlanDate;
+  String? serviceSubscriptionExpirationDate;
 
   SetServiceMapper({
     this.serviceName,
     this.serviceValue,
     this.serviceFrequency,
-    this.serviceExpirationPlaneDate,
-    this.serviceExpirationPortionDate,
+    this.serviceExpirationPlanDate,
+    this.serviceSubscriptionExpirationDate,
   });
 
   SetServiceMapper.MapFromJson(Map<String, dynamic> json) {
     serviceName = json['serviceName'];
     serviceValue = json['serviceValue'];
     serviceFrequency = json['serviceFrequency'];
-    serviceExpirationPlaneDate = json['serviceExpirationPlaneDate'];
-    serviceExpirationPortionDate = json['serviceExpirationPortionDate'];
+    serviceExpirationPlanDate = json['serviceExpirationPlanDate'];
+    serviceSubscriptionExpirationDate = json['serviceSubscriptionExpirationDate'];
   }
 
   Map<String, dynamic> jsonFromMap() => {
     'serviceName': serviceName,
     'serviceValue': serviceValue,
     'serviceFrequency': serviceFrequency,
-    'serviceExpirationPlaneDate': serviceExpirationPlaneDate,
-    'serviceExpirationPortionDate': serviceExpirationPortionDate,
+    'serviceExpirationPlanDate': serviceExpirationPlanDate,
+    'serviceSubscriptionExpirationDate': serviceSubscriptionExpirationDate,
   };
 }

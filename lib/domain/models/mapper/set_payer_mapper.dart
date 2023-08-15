@@ -18,6 +18,7 @@ class SetPayerMapper {
     this.payerCpf,
     this.payerCnpj,
     this.payerAddress,
+    this.payerService,
     this.payerCard,
   });
 
@@ -27,7 +28,9 @@ class SetPayerMapper {
     payerPhone = json['payerPhone'];
     payerCpf = json['payerCpf'];
     payerCnpj = json['payerCnpj'];
+    payerCard = SetCardMapper.MapFromJson(json['payerCard']);
     payerAddress = SetAddressMapper.MapFromJson(json['payerAddress']);
+    payerService = SetServiceMapper.MapFromJson(json['payerService']);
     payerCard = SetCardMapper.MapFromJson(json['payerCard']);
   }
 

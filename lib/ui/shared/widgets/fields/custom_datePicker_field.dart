@@ -56,7 +56,7 @@ class CustomDatePickerField extends StatelessWidget {
             lastDate: lastDate??DateTime.now(),
           ).then((pickedDate) {
             if(pickedDate == null) return;
-              controller.text = DateUtility().dateToString(pickedDate, format: "dd/MM/yyyy");
+              controller.text = DateUtility().dateToString(pickedDate, format: "dd/MM/yyyy")!;
               onChanged;
             },
           );
