@@ -25,7 +25,7 @@ abstract class _ServicesPayerStore with Store, ChangeNotifier {
 
   // CRUD
 
-  Future<bool> addPayer(BuildContext context, SetPayerMapper payer) async {
+  Future<bool> createPayer(BuildContext context, SetPayerMapper payer) async {
     String? token = Provider.of<MainIndexStore>(context, listen:false).storegeAuthData["userToken"];
 
     CreatePayerCommand createPayerCommand = CreatePayerCommand(

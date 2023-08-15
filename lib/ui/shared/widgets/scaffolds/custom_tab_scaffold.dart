@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:pay_2_me/ui/modules/drawer/widgets/custom_drawer_widget.dart';
 import 'package:pay_2_me/ui/mains/app_routes.dart';
 
 class CustomTabScaffold extends StatelessWidget {

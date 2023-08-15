@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 class CustomHumidityChartTile extends StatelessWidget {
   final double? humidity;
 
-  const CustomHumidityChartTile({this.humidity, Key? key}) : super(key: key);
+  const CustomHumidityChartTile({
+    this.humidity, 
+    Key? key
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    this.humidity??0;
     return SizedBox(
       height: 100,
       width: 100,
@@ -42,7 +44,7 @@ class CustomHumidityChartTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "${humidity!.toStringAsFixed(1)}%",
+                "${(humidity??0).toStringAsFixed(1)}%",
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,
                   fontSize: 20,

@@ -17,57 +17,60 @@ class CustomDetailTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 52,
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Theme.of(context).colorScheme.primary,
-          width: 0.5,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: Container(
+        height: 52,
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Theme.of(context).colorScheme.primary,
+            width: 0.5,
+          ),
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(10.0),
         ),
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: SizedBox(
-              height: 50,
-              child: TextField(
-                enabled: false,
-                readOnly: true,
-                decoration: InputDecoration(
-                  label: Text("$detailName: ${detailData ?? "Sem dados"}"),
-                  labelStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
+        child: Row(
+          children: [
+            Expanded(
+              child: SizedBox(
+                height: 50,
+                child: TextField(
+                  enabled: false,
+                  readOnly: true,
+                  decoration: InputDecoration(
+                    label: Text("$detailName: ${detailData ?? "Sem Dados"}"),
+                    labelStyle: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    prefixIcon: Icon(
+                      icon,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    border: InputBorder.none,
                   ),
-                  prefixIcon: Icon(
-                    icon,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                  border: InputBorder.none,
                 ),
               ),
             ),
-          ),
-          if (copyable)
-            IconButton(
-              iconSize: 25,
-              onPressed: () {
-                Clipboard.setData(
-                  new ClipboardData(text: "$detailData"),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    behavior: SnackBarBehavior.floating,
-                    content: Text("$detailName copiado!"),
-                  ),
-                );
-              },
-              icon: Icon(
-                Icons.copy_outlined,
+            if (copyable)
+              IconButton(
+                iconSize: 25,
+                onPressed: () {
+                  Clipboard.setData(
+                    new ClipboardData(text: "$detailData"),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                      content: Text("$detailName copiado!"),
+                    ),
+                  );
+                },
+                icon: Icon(
+                  Icons.copy_outlined,
+                ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }

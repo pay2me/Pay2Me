@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pay_2_me/ui/modules/auth/export_auth.dart';
 import 'package:pay_2_me/ui/modules/auth/stores/login_auth.store.dart';
-import 'package:pay_2_me/ui/shared/widgets/tiles/custom_textFormField_tile.dart';
+import 'package:pay_2_me/ui/shared/widgets/fields/custom_textFormField_field.dart';
 import 'package:provider/provider.dart';
 
 class LoginAuthPage extends StatelessWidget {

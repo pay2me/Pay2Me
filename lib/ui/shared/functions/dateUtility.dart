@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DateUtility {
-  String dateToString(DateTime date) {
-    String stringDate = DateFormat("yyyy-MM-dd HH:mm:ss ").format(date);
-    return adjustmentDateString(stringDate);
+  String dateToString(DateTime date, {String? format, bool withAdjustment = true}) {
+    String stringDate = DateFormat(format??"yyyy-MM-dd HH:mm:ss ").format(date);
+    
+    return withAdjustment 
+      ? adjustmentDateString(stringDate)
+      : stringDate;
   }
 
   DateTime stringToDate(String date, {bool isLocal = false}) {

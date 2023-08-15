@@ -12,4 +12,20 @@ class StringUtility {
     newtext = primeiraLetra + newtext;
     return newtext;
   }
+
+  bool hasUpperCase(String text) {
+    return RegExp(r'[A-Z]').hasMatch(text);
+  }
+
+  bool hasLowerCase(String text) {
+    return RegExp(r'[a-z]').hasMatch(text);
+  }
+
+  bool hasNumber(String text) {
+    return RegExp(r'[0-9]').hasMatch(text);
+  }
+
+  bool hasSpecialCharacters(String input) {
+    return RegExp(r'[!@#\$%^&*(),.?":{}|<>]').hasMatch(input);
+  }
 }
