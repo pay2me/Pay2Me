@@ -39,7 +39,7 @@ abstract class _ServicesPayerStore with Store, ChangeNotifier {
     return (await payerBusiness.insert(createPayerCommand, token!));
   }
 
-  Future<bool> updatePayer(BuildContext context, SetPayerMapper payer, int previousAreaId) async {
+  Future<bool> updatePayer(BuildContext context, SetPayerMapper payer) async {
     String? token = Provider.of<MainIndexStore>(context, listen:false).storegeAuthData["userToken"];
     
     UpdatePayerCommand editPayerCommand = UpdatePayerCommand(

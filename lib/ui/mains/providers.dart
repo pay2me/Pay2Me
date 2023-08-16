@@ -14,6 +14,7 @@ class Providers {
         ChangeNotifierProvider(create: (_) => ServicesPayerStore()),
         ChangeNotifierProvider(create: (_) => MainPayerStore()),
         ChangeNotifierProvider(create: (_) => CreatePayerStore()),
+        ChangeNotifierProvider(create: (_) => UpdatePayerStore()),
 
         ChangeNotifierProvider(create: (_) => MainIndexStore()),
 
