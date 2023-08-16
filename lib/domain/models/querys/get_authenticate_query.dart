@@ -1,5 +1,3 @@
-import 'package:dio/dio.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pay_2_me/domain/models/export_models.dart';
 
 class GetAuthenticateQuery {

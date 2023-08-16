@@ -11,7 +11,8 @@ class DateUtility {
       : stringDate;
   }
 
-  DateTime stringToDate(String date, {bool isLocal = false}) {
+  DateTime? stringToDate(String? date, {bool isLocal = false}) {
+    if(date == null) return null;
     if (isLocal) return DateTime.parse(date).toLocal();
     return DateTime.parse(date);
   }

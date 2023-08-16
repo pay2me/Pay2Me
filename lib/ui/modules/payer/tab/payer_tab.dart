@@ -18,6 +18,7 @@ class PayerTab extends StatelessWidget {
       builder: (ctx, snapshot) => Observer(
         builder: (context) => CustomTabScaffold(
           title: "Pagadores",
+          automaticallyImplyLeading: false,
           actionsAppBar: [
             IconButton(
               onPressed: store.isLoading
@@ -48,6 +49,15 @@ class PayerTab extends StatelessWidget {
                 onChangedSearch: store.onChangedSearch,
                 onLoadFromFilter: store.onLoadFromFilter,
               ),
+              const Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(child: Text("")),
+                  Expanded(child: Text("NOME")),
+                  Expanded(child: Text("SERVIÇO")),
+                  Expanded(child: Text("SITUAÇÃO")),
+                ],
+              ),
               snapshot.connectionState == ConnectionState.waiting ||
                       store.isLoading
                   ? const Center(child: CircularProgressIndicator())
@@ -62,7 +72,7 @@ class PayerTab extends StatelessWidget {
                               itemCount: store.payersToOverviewCount,
                               itemBuilder: (ctx, i) => PayerTile(
                                 payer: store.payersToOverview[i],
-                                isAdmin: store.isAdmin,
+                                index: i,
                               ),
                             ),
                     ),

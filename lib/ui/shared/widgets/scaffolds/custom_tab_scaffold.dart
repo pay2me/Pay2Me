@@ -3,12 +3,14 @@ import 'package:pay_2_me/ui/mains/app_routes.dart';
 
 class CustomTabScaffold extends StatelessWidget {
   final String title;
+  final bool automaticallyImplyLeading;
   final List<Widget>? actionsAppBar;
   final Widget? body;
   final Widget? bottomSheet;
 
   const CustomTabScaffold({
     required this.title,
+    this.automaticallyImplyLeading = true,
     this.body,
     this.bottomSheet,
     this.actionsAppBar,
@@ -48,6 +50,7 @@ class CustomTabScaffold extends StatelessWidget {
       onWillPop: () async => await onWillPop(context),
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: automaticallyImplyLeading,
           title: Text(
             title,
           ),

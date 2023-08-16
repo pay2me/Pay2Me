@@ -9,7 +9,7 @@ class AuthenticateBusiness {
       var result = await service.login(email, password);
 
       if(!(result.success??false)){
-        throw const FormatException('Dados formularios invalidos.');
+        throw const FormatException('Erro no Login');
       }
 
       return result.auth;
@@ -28,28 +28,7 @@ class AuthenticateBusiness {
       var result = await service.logout();
 
       if(!result){
-        throw const FormatException('Dados formularios invalidos.');
-      }
-
-      return true;
-    }
-    on FormatException catch(fe) {
-      print(fe);
-      return null;
-    }
-    on Exception catch(e) {
-      print(e);
-      return null;
-    }
-  }
-
-  Future<bool?> isAutheticate() async {
-    try {
-      var service = AuthenticateService();
-      bool result = await service.isAutheticate();
-
-      if(!result){
-        throw const FormatException('Dados formularios invalidos.');
+        throw const FormatException('Erro no Logout');
       }
 
       return true;

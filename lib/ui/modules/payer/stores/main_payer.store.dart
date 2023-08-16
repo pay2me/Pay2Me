@@ -1,23 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pay_2_me/domain/models/export_models.dart';
+import 'package:pay_2_me/domain/models/mapper/set_service_mapper.dart';
 import 'package:pay_2_me/ui/modules/search/export_search.dart';
 import 'package:provider/provider.dart';
-import 'package:pay_2_me/domain/models/mapper/set_payer_mapper.dart';
 import 'package:pay_2_me/ui/modules/export_modules.dart';
-import 'package:pay_2_me/ui/shared/functions/connectionUtility.dart';
 
 part 'main_payer.store.g.dart';
 
 class MainPayerStore = _MainPayerStore with _$MainPayerStore;
 
 abstract class _MainPayerStore with Store, ChangeNotifier {
-  @observable
-  bool isAdmin = false;
 
   @observable
   bool isLoading = false;
 
-  List<SetPayerMapper> _payerList = [];
+  List<SetPayerMapper> _payerList = [
+    SetPayerMapper(
+      payerId: "1",
+      payerName: "Oscar Borges Faleta Santana",
+      payerCpf: "123.456.789-10",
+      payerPhone: "+55 (71) 997335815",
+      payerCnpj: "123.456.78/1234-56",
+      payerAddress: SetAddressMapper(
+        addressCEP: "12345-678",
+        addressCity: "Algoinhas",
+        addressNeighborhood: "Centro",
+        addressState: "Bahia",
+      ),
+      payerCard: SetCardMapper(
+        cardId: "1",
+        cardCvv: "123",
+        cardExpiryDate: "2024-07",
+        cardNumber: "1234.5678.9012.3456",
+        cardPrintedName: "Oscar B F Santana",
+      ),
+      payerService: SetServiceMapper(
+        serviceName: "Qualquer Serviço",
+        serviceValue: "200",
+        serviceFrequency: "12 meses",
+        serviceExpirationPlanDate: "2024-08-15",
+        serviceSubscriptionExpirationDate: "2024-09-15",
+      )
+    ),
+    SetPayerMapper(
+      payerId: "2",
+      payerName: "Elton Faleta",
+      payerCpf: "123.456.789-10",
+      payerPhone: "+55 (71) 997335815",
+      payerCnpj: "123.456.78/1234-56",
+      payerAddress: SetAddressMapper(
+        addressCEP: "12345-678",
+        addressCity: "Algoinhas",
+        addressNeighborhood: "Centro",
+        addressState: "Bahia",
+      ),
+      payerCard: SetCardMapper(
+        cardId: "2",
+        cardCvv: "123",
+        cardExpiryDate: "2024-07",
+        cardNumber: "1234.5678.9012.3456",
+        cardPrintedName: "Elton F Santana",
+      ),
+      payerService: SetServiceMapper(
+        serviceName: "Outro Serviço",
+        serviceValue: "200",
+        serviceFrequency: "12 meses",
+        serviceExpirationPlanDate: "2022-08-15",
+        serviceSubscriptionExpirationDate: "2022-09-15",
+      )
+    )
+  ];
 
   @observable
   List<SetPayerMapper> payersToOverview = [];
@@ -35,23 +88,10 @@ abstract class _MainPayerStore with Store, ChangeNotifier {
   int get payersToOverviewCount => payersToOverview.length;
 
   @action
-  Future<bool> isConected() async {
-    bool isConnected = await ConnectionUtility().getConnection();
-
-    if (!isConnected) {
-      _payerList.clear();
-    }
-
-    return isConnected;
-  }
-
-  @action
   Future<void> loadPayers(BuildContext  context) async {
     isLoading = true;
 
-    if (!(await isConected())) {isLoading = false; return;};
-
-    _payerList = await Provider.of<ServicesPayerStore>(context, listen:false).getPayers(context);
+    // _payerList = await Provider.of<ServicesPayerStore>(context, listen:false).getPayers(context);
     onLoadFromFilter(context);
 
     isLoading = false;
