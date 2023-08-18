@@ -32,7 +32,7 @@ abstract class _MainSearchStore with Store, ChangeNotifier {
       builder: (context) => AlertDialog(
         title: const Text('Escolha um tipo de ordenação:'),
         content: SizedBox(
-          height: (listToFilter.length * 100),
+          height: ((ordinations?.length??1) * 65),
           width: MediaQuery.of(context).size.width * 0.95,
           child: SearchFilterDialogWidget(ordinations: ordinations)
         ),

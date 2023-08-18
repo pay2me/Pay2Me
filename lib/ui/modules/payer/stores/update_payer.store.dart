@@ -35,7 +35,7 @@ abstract class _UpdatePayerStore with Store, ChangeNotifier {
   }
 
   @action
-  String? fieldValidator(BuildContext context, String fieldName, String? value, bool fieldCanBeNull) {
+  String? fieldValidator(BuildContext context, String fieldName, dynamic value, bool fieldCanBeNull) {
     final service = FormUtility();
 
     String? errorMessage = service.validate(fieldName, value, fieldCanBeNull);

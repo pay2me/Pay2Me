@@ -28,7 +28,7 @@ class SearchBarWidget extends StatelessWidget {
         height: 65,
         decoration: BoxDecoration(
           border: Border.all(
-            color: Theme.of(context).colorScheme.primary,
+            color: Theme.of(context).colorScheme.secondary,
             width: 1,
           ),
           color: Colors.transparent,
@@ -45,25 +45,25 @@ class SearchBarWidget extends StatelessWidget {
                 decoration: InputDecoration(
                   labelText: labelText,
                   labelStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                   hintText: hintText,
                   hintStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
-                  focusedBorder: UnderlineInputBorder(
+                  focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                     color: Colors.transparent,
                     width: 10,
                   )),
-                  enabledBorder: UnderlineInputBorder(
+                  enabledBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                     color: Colors.transparent,
                     width: 2,
                   )),
                   prefixIcon: Icon(
                     Icons.search,
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
               ),
@@ -72,24 +72,24 @@ class SearchBarWidget extends StatelessWidget {
               Row(
                 children: [
                   VerticalDivider(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.secondary,
                     width: 1,
                     indent: 10,
                     endIndent: 10,
                   ),
                   IconButton(
-                    icon: Icon(Icons.filter_list_outlined),
+                    icon: const Icon(Icons.filter_list_outlined),
                     onPressed: () async => await store.showFilters(context, listToFilter!, onLoadFromFilter!),
                   ),
                   VerticalDivider(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.secondary,
                     width: 1,
                     indent: 10,
                     endIndent: 10,
                   ),
                   IconButton(
                     onPressed: () => store.clearSearch(context, onChangedSearch, onLoadFromFilter??((context, {Ordering? ordering}){})),
-                    icon: Icon(Icons.close_outlined),
+                    icon: const Icon(Icons.close_outlined),
                   ),
                 ],
               ),

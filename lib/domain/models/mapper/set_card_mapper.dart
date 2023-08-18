@@ -1,9 +1,11 @@
+import 'package:pay_2_me/ui/shared/functions/dateUtility.dart';
+
 class SetCardMapper {
   String? cardId;
   String? cardNumber;
   String? cardPrintedName;
   String? cardCvv;
-  String? cardExpiryDate;
+  DateTime? cardExpiryDate;
 
   SetCardMapper({
     this.cardId,
@@ -18,7 +20,7 @@ class SetCardMapper {
     cardNumber = json['cardNumber'];
     cardPrintedName = json['cardPrintedName'];
     cardCvv = json['cardCvv'];
-    cardExpiryDate = json['cardExpiryDate'];
+    cardExpiryDate = DateUtility().stringToDate(json['cardExpiryDate']);
   }
 
   Map<String, dynamic> jsonFromMap() => {

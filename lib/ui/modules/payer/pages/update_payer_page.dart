@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pay_2_me/domain/models/mapper/set_payer_mapper.dart';
 import 'package:pay_2_me/ui/modules/payer/export_payer.dart';
-import 'package:pay_2_me/ui/shared/functions/dateUtility.dart';
 import 'package:pay_2_me/ui/shared/widgets/fields/custom_datePicker_field.dart';
 import 'package:pay_2_me/ui/shared/widgets/fields/custom_textFormField_container_field.dart';
 import 'package:pay_2_me/ui/shared/widgets/scaffolds/custom_form_scaffold.dart';
@@ -16,7 +15,7 @@ class UpdatePayerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final store = Provider.of<UpdatePayerStore>(context, listen: false);
 
-    // store.payerToForm = ModalRoute.of(context).
+    store.payerToForm = ModalRoute.of(context)!.settings.arguments as SetPayerMapper;
 
     final maskPhone = MaskTextInputFormatter(mask: "+55 (##) #####-####", filter: {"#": RegExp(r'[0-9]')});
     final maskCPF = MaskTextInputFormatter(mask: "###.###.###-##", filter: {"#": RegExp(r'[0-9]')});
@@ -183,11 +182,13 @@ class UpdatePayerPage extends StatelessWidget {
                     initialValue: store.payerToForm.payerCard!.cardExpiryDate,
                     labelText: "Data de vencimento",
                     controller: expiryDateController,
-                    lastDate: DateTime.now().add(const Duration(days: 3650)),
+                    initialDatePickerMode: DatePickerMode.year,
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime.now().add(const Duration(days: 36500)),
                     isWrong: !(store.validityOfFields["Data de vencimento"] ?? true),
                     onTap: () => store.validityOfFields["Data de vencimento"] = true,
                     onChanged: (value) => store.validityOfFields["Data de vencimento"] = true,
-                    onSaved: (value) => store.payerToForm.payerCard!.cardExpiryDate = DateUtility().adjustmentDateString(value),
+                    onSaved: (value) => store.payerToForm.payerCard!.cardExpiryDate = value,
                     validator: (value) => store.fieldValidator(context, "Data de vencimento", value, false),
                   ),
                 ),
@@ -253,13 +254,13 @@ class UpdatePayerPage extends StatelessWidget {
                 Expanded(
                   child: CustomDatePickerField(
                     initialValue: store.payerToForm.payerService!.serviceSubscriptionExpirationDate,
-                    labelText: "Vencimento",
+                    labelText: "Vencimento da parcela",
                     controller: dueDateController,
                     lastDate: DateTime.now().add(const Duration(days: 3650)),
                     isWrong: !(store.validityOfFields["Vencimento"] ?? true),
                     onTap: () => store.validityOfFields["Vencimento"] = true,
                     onChanged: (value) => store.validityOfFields["Vencimento"] = true,
-                    onSaved: (value) => store.payerToForm.payerService!.serviceSubscriptionExpirationDate = DateUtility().adjustmentDateString(value),
+                    onSaved: (value) => store.payerToForm.payerService!.serviceSubscriptionExpirationDate = value,
                     validator: (value) => store.fieldValidator(context, "Vencimento", value, false),
                   ),
                 ),
@@ -276,7 +277,7 @@ class UpdatePayerPage extends StatelessWidget {
                     isWrong: !(store.validityOfFields["Vencimento do plano"] ?? true),
                     onTap: () => store.validityOfFields["Vencimento do plano"] = true,
                     onChanged: (value) => store.validityOfFields["Vencimento do plano"] = true,
-                    onSaved: (value) => store.payerToForm.payerService!.serviceExpirationPlanDate = DateUtility().adjustmentDateString(value),
+                    onSaved: (value) => store.payerToForm.payerService!.serviceExpirationPlanDate = value,
                     validator: (value) => store.fieldValidator(context, "Vencimento do plano", value, false),
                   ),
                 ),

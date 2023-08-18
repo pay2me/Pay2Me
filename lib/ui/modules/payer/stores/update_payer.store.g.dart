@@ -78,7 +78,7 @@ mixin _$UpdatePayerStore on _UpdatePayerStore, Store {
       ActionController(name: '_UpdatePayerStore', context: context);
 
   @override
-  String? fieldValidator(BuildContext context, String fieldName, String? value,
+  String? fieldValidator(BuildContext context, String fieldName, dynamic value,
       bool fieldCanBeNull) {
     final _$actionInfo = _$_UpdatePayerStoreActionController.startAction(
         name: '_UpdatePayerStore.fieldValidator');

@@ -4,26 +4,26 @@ import 'package:pay_2_me/ui/shared/widgets/fields/custom_textFormField_container
 
 class CustomDatePickerField extends StatelessWidget {
   final String labelText;
-  final String? initialValue;
+  final DateTime? initialValue;
   final DateTime? initialDate;
   final DateTime? firstDate;
   final DateTime? lastDate;
   final Color? color;
   final bool isWrong;
   final TextEditingController controller;
+  final DatePickerMode initialDatePickerMode;
   final Function()? onTap;
-  final Function(String?)? onSaved;
-  final Function(String?)? onChanged;
-  final String? Function(String?)? validator;
-  // final Function(DateTime?) onValue;
+  final Function(DateTime?)? onSaved;
+  final Function(DateTime?)? onChanged;
+  final String? Function(DateTime?)? validator;
 
-  CustomDatePickerField({
+  const CustomDatePickerField({
     required this.labelText,
     this.initialDate,
     this.firstDate,
     this.lastDate,
-    // required this.onValue,
     required this.controller,
+    this.initialDatePickerMode = DatePickerMode.day,
     this.initialValue,
     this.color,
     this.isWrong = false,
@@ -36,7 +36,7 @@ class CustomDatePickerField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if(initialValue != null) controller.text = DateUtility().getDateOnlyFromString(initialValue!)!;
+    if(initialValue != null) controller.text = DateUtility().getDateOnlyFromDate(initialValue!)!;
     
     return CustomTextFormContainerField(
       labelText: labelText,
@@ -44,19 +44,25 @@ class CustomDatePickerField extends StatelessWidget {
       controller: controller,
       onTap: onTap,
       isWrong: isWrong,
-      onSaved: onSaved,
-      validator: validator,
+      onSaved: (date) => onSaved == null ? null : onSaved!(DateUtility().stringToDate(date)),
+      validator: (date) => validator == null ? null : validator!(DateUtility().stringToDate(date)),
       suffixIconColor: color ?? Theme.of(context).colorScheme.secondary,
       suffixIcon: IconButton(
         onPressed: () async {
           showDatePicker(
             context: context,
+            initialDatePickerMode: initialDatePickerMode,
             firstDate: firstDate??DateTime(2000),
             initialDate: initialDate??DateTime.now(),
             lastDate: lastDate??DateTime.now(),
           ).then((pickedDate) {
             if(pickedDate == null) return;
-              controller.text = DateUtility().dateToString(pickedDate, format: "dd/MM/yyyy")!;
+              controller.text = DateUtility().dateToString(
+                pickedDate, 
+                format: initialDatePickerMode == DatePickerMode.day 
+                  ? "dd/MM/yyyy" 
+                  : "MM/yyyy"
+              )!;
               onChanged;
             },
           );

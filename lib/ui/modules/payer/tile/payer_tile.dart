@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:pay_2_me/domain/models/mapper/set_payer_mapper.dart';
 import 'package:pay_2_me/ui/mains/app_routes.dart';
-import 'package:pay_2_me/ui/shared/functions/dateUtility.dart';
 
 class PayerTile extends StatelessWidget {
   final SetPayerMapper payer;
@@ -26,8 +25,8 @@ class PayerTile extends StatelessWidget {
       random.nextInt(256),
     );
 
-    DateTime expirationPlanDate = DateUtility().stringToDate(payer.payerService?.serviceExpirationPlanDate)??DateTime.now().subtract(Duration(days: 1));
-    DateTime subscriptionExpirationDate = DateUtility().stringToDate(payer.payerService?.serviceSubscriptionExpirationDate)??DateTime.now().subtract(Duration(days: 1));
+    DateTime expirationPlanDate = payer.payerService?.serviceExpirationPlanDate??DateTime.now().subtract(Duration(days: 1));
+    DateTime subscriptionExpirationDate = payer.payerService?.serviceSubscriptionExpirationDate??DateTime.now().subtract(Duration(days: 1));
 
     bool isActivate = (expirationPlanDate.isAfter(DateTime.now()) && subscriptionExpirationDate.isAfter(DateTime.now())) ? true : false;
 

@@ -22,6 +22,7 @@ abstract class _MainPayerStore with Store, ChangeNotifier {
       payerCpf: "123.456.789-10",
       payerPhone: "+55 (71) 997335815",
       payerCnpj: "123.456.78/1234-56",
+      payerCompanyName: "Pay2Me",
       payerAddress: SetAddressMapper(
         addressCEP: "12345-678",
         addressCity: "Algoinhas",
@@ -31,7 +32,7 @@ abstract class _MainPayerStore with Store, ChangeNotifier {
       payerCard: SetCardMapper(
         cardId: "1",
         cardCvv: "123",
-        cardExpiryDate: "2024-07",
+        cardExpiryDate: DateTime.now(),
         cardNumber: "1234.5678.9012.3456",
         cardPrintedName: "Oscar B F Santana",
       ),
@@ -39,8 +40,8 @@ abstract class _MainPayerStore with Store, ChangeNotifier {
         serviceName: "Qualquer Serviço",
         serviceValue: "200",
         serviceFrequency: "12 meses",
-        serviceExpirationPlanDate: "2024-08-15",
-        serviceSubscriptionExpirationDate: "2024-09-15",
+        serviceExpirationPlanDate: DateTime.now().add(Duration(days: 30)),
+        serviceSubscriptionExpirationDate: DateTime.now().add(Duration(days: 90)),
       )
     ),
     SetPayerMapper(
@@ -49,6 +50,7 @@ abstract class _MainPayerStore with Store, ChangeNotifier {
       payerCpf: "123.456.789-10",
       payerPhone: "+55 (71) 997335815",
       payerCnpj: "123.456.78/1234-56",
+      payerCompanyName: "Pay2Me",
       payerAddress: SetAddressMapper(
         addressCEP: "12345-678",
         addressCity: "Algoinhas",
@@ -58,7 +60,7 @@ abstract class _MainPayerStore with Store, ChangeNotifier {
       payerCard: SetCardMapper(
         cardId: "2",
         cardCvv: "123",
-        cardExpiryDate: "2024-07",
+        cardExpiryDate: DateTime.now(),
         cardNumber: "1234.5678.9012.3456",
         cardPrintedName: "Elton F Santana",
       ),
@@ -66,8 +68,8 @@ abstract class _MainPayerStore with Store, ChangeNotifier {
         serviceName: "Outro Serviço",
         serviceValue: "200",
         serviceFrequency: "12 meses",
-        serviceExpirationPlanDate: "2022-08-15",
-        serviceSubscriptionExpirationDate: "2022-09-15",
+        serviceExpirationPlanDate: DateTime.now().subtract(Duration(days: 90)),
+        serviceSubscriptionExpirationDate: DateTime.now().subtract(Duration(days: 30)),
       )
     )
   ];

@@ -21,67 +21,69 @@ class FormUtility {
     "Vencimento do plano": "Vencimento do plano é obrigatório",
   };
 
-  String? validate(String fieldName, String? value, bool fieldCanBeNull) {
+  bool stringIsNotEmpty(String? value) => (value??"").isNotEmpty;
+  bool listIsNotEmpty(List? value) => (value??[]).isNotEmpty;
+  bool isNumberParsed(String value) => num.tryParse(value) != null ? true : false;
+  bool hasUpperCase(String value) => StringUtility().hasUpperCase(value);
+  bool hasLowerCase(String value) => StringUtility().hasLowerCase(value);
+  bool hasNumber(String value) => StringUtility().hasNumber(value);
+  bool hasSpecialCharacters(String value) => StringUtility().hasSpecialCharacters(value);
+  bool checkStringLenght(String value, int minLenght, {int? maxLenght}) => (value.length >= (minLenght)) && (maxLenght == null ? true : value.length <= (maxLenght));
+  bool checkListLenght(List value, int minLenght, {int? maxLenght}) => value.length >= (minLenght) && (maxLenght == null ? true : value.length <= (maxLenght));
+
+  String? validate(String fieldName, dynamic value, bool fieldCanBeNull) {
     if((value == null || value.isEmpty) && fieldCanBeNull) return null;
 
     bool isValid = true;
 
-    value = value??"";
-    bool isDoubleParsed = double.tryParse(value) != null ? true : false;
-    bool hasUpperCase = StringUtility().hasUpperCase(value);
-    bool hasLowerCase = StringUtility().hasLowerCase(value);
-    bool hasNumber = StringUtility().hasNumber(value);
-    bool checkLenght = (value.length > 8);
-    bool hasSpecialCharacters = StringUtility().hasSpecialCharacters(value);
-
     switch (fieldName) {
       case "Nome":
-        isValid = value.isNotEmpty;
+        isValid = stringIsNotEmpty(value);
         break;
       case "Telefone":
-        isValid = value.isNotEmpty;
+        isValid = stringIsNotEmpty(value);
         break;
       case "CPF":
-        isValid = value.isNotEmpty;
+        isValid = stringIsNotEmpty(value);
         break;
       case "Cidade":
-        isValid = value.isNotEmpty;
+        isValid = stringIsNotEmpty(value);
         break;
       case "Estado":
-        isValid = value.isNotEmpty;
+        isValid = stringIsNotEmpty(value);
         break;
       case "Bairro":
-        isValid = value.isNotEmpty;
+        isValid = stringIsNotEmpty(value);
         break;
       case "CEP":
-        isValid = value.isNotEmpty;
+        isValid = stringIsNotEmpty(value);
         break;
       case "Número do cartão":
-        isValid = value.isNotEmpty;
+        isValid = stringIsNotEmpty(value);
         break;
       case "Nome no cartão":
-        isValid = value.isNotEmpty;
+        isValid = stringIsNotEmpty(value);
         break;
       case "Data de vencimento":
-        isValid = value.isNotEmpty;
+        isValid = stringIsNotEmpty(value);
         break;
       case "CVV":
-        isValid = value.isNotEmpty;
+        isValid = stringIsNotEmpty(value);
         break;
       case "Serviço":
-        isValid = value.isNotEmpty;
+        isValid = stringIsNotEmpty(value);
         break;
       case "Frequência de pagamento":
-        isValid = value.isNotEmpty;
+        isValid = stringIsNotEmpty(value);
         break;
       case "Valor":
-        isValid = value.isNotEmpty;
+        isValid = stringIsNotEmpty(value);
         break;
       case "Vencimento":
-        isValid = value.isNotEmpty;
+        isValid = stringIsNotEmpty(value);
         break;
       case "Vencimento do plano":
-        isValid = value.isNotEmpty;
+        isValid = stringIsNotEmpty(value);
         break;
       default:
         break;

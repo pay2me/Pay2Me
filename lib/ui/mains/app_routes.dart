@@ -12,9 +12,10 @@ class AppRoutes {
 
   static const CREATEPAYERPAGE = '/createpayerpage';
   static const DETAILPAYERPAGE = '/detailpayerpage';
+  static const EDITPAYERPAGE = '/editpayerpage';
 
   static Map<String, WidgetBuilder> routes = {
-    AUTH_OR_HOME: (ctx) => AuthOrIndexPage(),
+    AUTH_OR_HOME: (ctx) => const AuthOrIndexPage(),
     // AUTH_OR_HOME: (ctx) => AuthOrIndexPage(),
 
     // LOGIN: (ctx) => LoginPage(),
@@ -24,5 +25,6 @@ class AppRoutes {
 
     CREATEPAYERPAGE: (ctx) => const CreatePayerPage(),
     DETAILPAYERPAGE: (ctx) => const DetailPayerPage(),
+    EDITPAYERPAGE: (ctx) => const UpdatePayerPage(),
   };
 }

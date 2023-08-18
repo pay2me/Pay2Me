@@ -1,9 +1,11 @@
+import 'package:pay_2_me/ui/shared/functions/dateUtility.dart';
+
 class SetServiceMapper {
   String? serviceName;
   String? serviceValue;
   String? serviceFrequency;
-  String? serviceExpirationPlanDate;
-  String? serviceSubscriptionExpirationDate;
+  DateTime? serviceExpirationPlanDate;
+  DateTime? serviceSubscriptionExpirationDate;
 
   SetServiceMapper({
     this.serviceName,
@@ -17,8 +19,8 @@ class SetServiceMapper {
     serviceName = json['serviceName'];
     serviceValue = json['serviceValue'];
     serviceFrequency = json['serviceFrequency'];
-    serviceExpirationPlanDate = json['serviceExpirationPlanDate'];
-    serviceSubscriptionExpirationDate = json['serviceSubscriptionExpirationDate'];
+    serviceExpirationPlanDate = DateUtility().stringToDate(json['serviceExpirationPlanDate']);
+    serviceSubscriptionExpirationDate = DateUtility().stringToDate(json['serviceSubscriptionExpirationDate']);
   }
 
   Map<String, dynamic> jsonFromMap() => {
