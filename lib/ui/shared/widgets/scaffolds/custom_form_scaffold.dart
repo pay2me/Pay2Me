@@ -60,9 +60,9 @@ class CustomFormScaffold extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            Theme.of(context).colorScheme.secondary,
+                        backgroundColor: Theme.of(context).colorScheme.primary,
                         padding: const EdgeInsets.all(10),
+                        fixedSize: const Size(100, 40),
                       ),
                       child: buttonChild,
                       onPressed: submitForm,

@@ -29,10 +29,10 @@ abstract class _LoginAuthStore with Store, ChangeNotifier {
   bool get formIsValid => formKey.currentState?.validate() ?? false;
 
   String? fieldValidator(String fieldName, dynamic value) {
-    // value = value ?? "";
-    // if (value.isEmpty) {
-    //   return "$fieldName é obrigatorio";
-    // }
+    value = value ?? "";
+    if (value.isEmpty) {
+      return "$fieldName é obrigatorio";
+    }
     return null;
   }
 

@@ -31,22 +31,6 @@ mixin _$MainPayerStore on _MainPayerStore, Store {
               name: '_MainPayerStore.payersToOverviewCount'))
       .value;
 
-  late final _$isAdminAtom =
-      Atom(name: '_MainPayerStore.isAdmin', context: context);
-
-  @override
-  bool get isAdmin {
-    _$isAdminAtom.reportRead();
-    return super.isAdmin;
-  }
-
-  @override
-  set isAdmin(bool value) {
-    _$isAdminAtom.reportWrite(value, super.isAdmin, () {
-      super.isAdmin = value;
-    });
-  }
-
   late final _$isLoadingAtom =
       Atom(name: '_MainPayerStore.isLoading', context: context);
 
@@ -95,14 +79,6 @@ mixin _$MainPayerStore on _MainPayerStore, Store {
     });
   }
 
-  late final _$isConectedAsyncAction =
-      AsyncAction('_MainPayerStore.isConected', context: context);
-
-  @override
-  Future<bool> isConected() {
-    return _$isConectedAsyncAction.run(() => super.isConected());
-  }
-
   late final _$loadPayersAsyncAction =
       AsyncAction('_MainPayerStore.loadPayers', context: context);
 
@@ -139,7 +115,6 @@ mixin _$MainPayerStore on _MainPayerStore, Store {
   @override
   String toString() {
     return '''
-isAdmin: ${isAdmin},
 isLoading: ${isLoading},
 payersToOverview: ${payersToOverview},
 payersToFilter: ${payersToFilter},

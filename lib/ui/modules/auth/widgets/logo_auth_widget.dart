@@ -8,19 +8,22 @@ class LogoAuthWidget extends StatelessWidget {
 
     return Container(
       color: Colors.orange,
-      child: const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "Pay2Me",
-            style: TextStyle(fontSize: 30),
-          ),
-          SizedBox(height: 30),
-          Text(
-            "Itcom",
-            style: TextStyle(fontSize: 30),
-          ),
-        ],
+      child: const Padding(
+        padding: EdgeInsets.symmetric(vertical: 100),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "Pay2Me",
+              style: TextStyle(fontSize: 30, color: Colors.white),
+            ),
+            SizedBox(height: 30),
+            Text(
+              "Itcom",
+              style: TextStyle(fontSize: 30, color: Colors.white),
+            ),
+          ],
+        ),
       ),
     );
   }

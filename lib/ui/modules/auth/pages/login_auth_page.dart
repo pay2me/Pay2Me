@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pay_2_me/ui/modules/auth/export_auth.dart';
 import 'package:pay_2_me/ui/modules/auth/stores/login_auth.store.dart';
-import 'package:pay_2_me/ui/shared/widgets/tiles/custom_textFormField_tile.dart';
+import 'package:pay_2_me/ui/shared/widgets/fields/custom_textFormField_field.dart';
 import 'package:provider/provider.dart';
 
 class LoginAuthPage extends StatelessWidget {
@@ -40,21 +40,21 @@ class LoginAuthPage extends StatelessWidget {
                       CustomTextFormField(
                         labelText: 'Email',
                         keyboardType: TextInputType.emailAddress,
-                        prefixIcon: Icon(Icons.email),
-                        onSaved: (login) => store.userToForm.userLogin = login,
+                        prefixIcon: const Icon(Icons.email),
+                        onSaved: (email) => store.userToForm.userEmail = email,
                         validator: (email) => store.fieldValidator("Email", email),
                       ),
                       const SizedBox(height: 20.0),
                       CustomTextFormField(
                         labelText: 'Senha',
-                        prefixIcon: Icon(Icons.password),
+                        prefixIcon: const Icon(Icons.password),
                         obscureText: store.isObscure,
                         onSaved: (password) => store.userToForm.userPassword = password,
                         validator: (password) => store.fieldValidator("Senha", password),
                         suffixIcon: IconButton(
                           icon: store.isObscure
-                              ? Icon(Icons.visibility_off_outlined)
-                              : Icon(Icons.visibility_outlined),
+                              ? const Icon(Icons.visibility_off_outlined)
+                              : const Icon(Icons.visibility_outlined),
                           onPressed: store.changeObscure,
                         ),
                       ),
@@ -63,7 +63,7 @@ class LoginAuthPage extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Theme.of(context).colorScheme.primary,
                           padding: const EdgeInsets.all(10),
-                          minimumSize: const Size(double.infinity, 30),
+                          fixedSize: const Size(100, 40),
                         ),
                         child: store.isLoading
                             ? const CircularProgressIndicator(

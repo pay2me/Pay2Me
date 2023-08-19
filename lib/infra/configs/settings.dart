@@ -1,3 +1,3 @@
 class Settings {
-  static String url = "https://api.pay_2_me.com"; 
+  static String cobreFacilEndPoint = "https://api.pay_2_me.com"; 
 }

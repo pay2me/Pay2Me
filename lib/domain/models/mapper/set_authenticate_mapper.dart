@@ -1,20 +1,21 @@
+import 'package:pay_2_me/domain/models/mapper/set_user_mapper.dart';
+
 class SetAuthenticateMapper {
-  String? authName;
-  String? authEmail;
-  String? authRole;
+  SetUserMapper? authUser;
   String? authToken;
 
   SetAuthenticateMapper({
-    this.authName,
-    this.authEmail,
-    this.authRole,
+    this.authUser,
     this.authToken,
   });
 
   SetAuthenticateMapper.MapFromJson(Map<String, dynamic> json) {
-    authName = json['name'];
-    authEmail = json['email'];
-    authRole = json['role'];
+    authUser = SetUserMapper.MapFromJson(json);
     authToken = json['token'];
+  }
+
+  bool isIncomplete() {
+    if (authUser == null || authToken == null) return true;
+    return false;
   }
 }

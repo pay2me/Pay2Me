@@ -2,19 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DateUtility {
-  String dateToString(DateTime date) {
-    String stringDate = DateFormat("yyyy-MM-dd HH:mm:ss ").format(date);
-    return adjustmentDateString(stringDate);
+  String? dateToString(DateTime? date, {String? format, bool withAdjustment = true}) {
+    if(date == null) return null;
+    String stringDate = DateFormat(format??"yyyy-MM-dd HH:mm:ss ").format(date);
+    
+    return withAdjustment 
+      ? adjustmentDateString(stringDate)
+      : stringDate;
   }
 
-  DateTime stringToDate(String date, {bool isLocal = false}) {
+  DateTime? stringToDate(String? date, {bool isLocal = false}) {
+    if(date == null) return null;
     if (isLocal) return DateTime.parse(date).toLocal();
     return DateTime.parse(date);
   }
 
   Map<String, String>? getDateAndHourFromDate(DateTime? date) {
     if (date == null) return null;
-    String dateString = dateToString(date);
+    String? dateString = dateToString(date);
 
     return getDateAndHourFromString(dateString);
   }
@@ -64,7 +69,8 @@ class DateUtility {
     return dateString;
   }
 
-  String adjustmentDateString(String date) {
+  String? adjustmentDateString(String? date) {
+    if(date == null) return null;
     date = date.replaceFirst(' ', 'T');
     date = date.replaceFirst(' ', 'Z');
     return date;

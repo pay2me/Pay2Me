@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pay_2_me/domain/models/export_models.dart';
 import 'package:pay_2_me/ui/modules/search/export_search.dart';
 import 'package:provider/provider.dart';
-import 'package:pay_2_me/domain/models/mapper/set_payer_mapper.dart';
 import 'package:pay_2_me/ui/modules/export_modules.dart';
-import 'package:pay_2_me/ui/shared/functions/connectionUtility.dart';
 
 part 'main_payer.store.g.dart';
 
 class MainPayerStore = _MainPayerStore with _$MainPayerStore;
 
 abstract class _MainPayerStore with Store, ChangeNotifier {
-  @observable
-  bool isAdmin = false;
 
   @observable
   bool isLoading = false;
@@ -35,23 +32,10 @@ abstract class _MainPayerStore with Store, ChangeNotifier {
   int get payersToOverviewCount => payersToOverview.length;
 
   @action
-  Future<bool> isConected() async {
-    bool isConnected = await ConnectionUtility().getConnection();
-
-    if (!isConnected) {
-      _payerList.clear();
-    }
-
-    return isConnected;
-  }
-
-  @action
   Future<void> loadPayers(BuildContext  context) async {
     isLoading = true;
 
-    if (!(await isConected())) {isLoading = false; return;};
-
-    _payerList = await Provider.of<ServicesPayerStore>(context, listen:false).getPayers(context);
+    // _payerList = await Provider.of<ServicesPayerStore>(context, listen:false).getPayers(context);
     onLoadFromFilter(context);
 
     isLoading = false;

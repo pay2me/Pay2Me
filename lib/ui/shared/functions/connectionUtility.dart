@@ -9,7 +9,8 @@ class ConnectionUtility {
       } else {
         return false;
       }
-    } catch (_) {
+    } catch (e) {
+      print(e);
       return false;
     }
   }

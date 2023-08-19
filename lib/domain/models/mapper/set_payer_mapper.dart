@@ -1,11 +1,15 @@
 import 'package:pay_2_me/domain/models/export_models.dart';
+import 'package:pay_2_me/domain/models/mapper/set_service_mapper.dart';
 
 class SetPayerMapper {
   String? payerId;
   String? payerName;
   String? payerPhone;
   String? payerCpf;
+  String? payerCnpj;
+  String? payerCompanyName;
   SetAddressMapper? payerAddress;
+  SetServiceMapper? payerService;
   SetCardMapper? payerCard;
 
   SetPayerMapper({
@@ -13,7 +17,10 @@ class SetPayerMapper {
     this.payerName,
     this.payerPhone,
     this.payerCpf,
+    this.payerCnpj,
+    this.payerCompanyName,
     this.payerAddress,
+    this.payerService,
     this.payerCard,
   });
 
@@ -22,7 +29,11 @@ class SetPayerMapper {
     payerName = json['payerName'];
     payerPhone = json['payerPhone'];
     payerCpf = json['payerCpf'];
+    payerCnpj = json['payerCnpj'];
+    payerCompanyName = json['payerCompanyName'];
+    payerCard = SetCardMapper.MapFromJson(json['payerCard']);
     payerAddress = SetAddressMapper.MapFromJson(json['payerAddress']);
+    payerService = SetServiceMapper.MapFromJson(json['payerService']);
     payerCard = SetCardMapper.MapFromJson(json['payerCard']);
   }
 

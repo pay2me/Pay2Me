@@ -8,7 +8,7 @@ class PayerService implements IPayerService {
 
   @override
   Future<GetPayerQuery> getAll(String token) async {
-    var url = "${Settings.url}/payers.json";
+    var url = "${Settings.cobreFacilEndPoint}/payers.json";
     var response = await Dio().get(url, options: Options(
       headers: {
         "authorization": "Bearer $token",
@@ -20,7 +20,7 @@ class PayerService implements IPayerService {
 
   @override
   Future<GetPayerQuery> getFromId(String token, String id) async {
-    var url = "${Settings.url}/payers/$id.json";
+    var url = "${Settings.cobreFacilEndPoint}/payers/$id.json";
     var response = await Dio().get(url, options: Options(
       headers: {
         "authorization": "Bearer $token",
@@ -32,7 +32,7 @@ class PayerService implements IPayerService {
   
   @override
   Future<bool?> insert(CreatePayerCommand command, String token) async {
-    var url = "${Settings.url}/payers.json";
+    var url = "${Settings.cobreFacilEndPoint}/payers.json";
     var response = await Dio().post(url, data: command.MapToJson(), options: Options(
       headers: {
         "authorization": "Bearer $token",
@@ -44,7 +44,7 @@ class PayerService implements IPayerService {
 
   @override
   Future<bool?> update(UpdatePayerCommand command, String token) async {
-    var url = "${Settings.url}/payers/${command.payerId}.json";
+    var url = "${Settings.cobreFacilEndPoint}/payers/${command.payerId}.json";
     var response = await Dio().patch(url, data: command.MapToJson(), options: Options(
       headers: {
         "authorization": "Bearer $token",
@@ -56,7 +56,7 @@ class PayerService implements IPayerService {
 
   @override
   Future<bool?> delete(DeletePayerCommand command, String token) async {
-    var url = "${Settings.url}/payers/${command.payerId}.json";
+    var url = "${Settings.cobreFacilEndPoint}/payers/${command.payerId}.json";
     var response = await Dio().delete(url, data: command.MapToJson(), options: Options(
       headers: {
         "authorization": "Bearer $token",

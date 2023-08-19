@@ -6,11 +6,11 @@ class CustomTheme {
 
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
-      primary:  Color.fromRGBO(255, 148, 0, 1), // #FF9400
+      primary: Color.fromRGBO(255, 148, 0, 1),
       onPrimary: Colors.white,
-      secondary: Colors.white,
-      onSecondary: Colors.black,
-      tertiary:  Color.fromRGBO(255, 152, 12, 1), // #FF980C
+      secondary: Color.fromRGBO(30, 62, 112, 1),
+      onSecondary: Colors.white,
+      tertiary:  Colors.white,
       shadow:  Color.fromARGB(255, 179, 179, 179),
       error:  Color.fromARGB(174, 255, 0, 0),
       onError: Colors.white,
