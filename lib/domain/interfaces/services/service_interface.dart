@@ -15,4 +15,7 @@ abstract class IServiceService {
   Future<bool?> create(CreateServiceCommand command, String token);
   Future<bool?> update(UpdateServiceCommand command, String token);
   Future<bool?> delete(DeleteServiceCommand command, String token);
+  
+  Future<bool?> active(String serviceId, String token);
+  Future<bool?> inactive(String serviceId, String token);
 }
