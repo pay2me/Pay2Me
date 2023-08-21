@@ -1,4 +1,5 @@
 import 'package:pay_2_me/domain/models/export_models.dart';
+import 'package:pay_2_me/ui/shared/functions/dateUtility.dart';
 
 class SetPayerMapper {
   String? payerId;
@@ -12,9 +13,9 @@ class SetPayerMapper {
   String? payerFullName;
   SetAddressMapper? payerAddress;
   String? payerDocument;
-  String? payerCreatedAt;
-  String? payerUpdateAt;
-  String? payerDeleteAt;
+  DateTime? payerCreatedAt;
+  DateTime? payerUpdateAt;
+  DateTime? payerDeleteAt;
 
   SetPayerMapper({
     this.payerId,
@@ -45,9 +46,9 @@ class SetPayerMapper {
     payerFullName = json['fullname'];
     payerAddress = SetAddressMapper.MapFromJson(json['address']);
     payerDocument = json['document'];
-    payerCreatedAt = json['created_at'];
-    payerUpdateAt = json['update_at'];
-    payerDeleteAt = json['delete_at'];
+    payerCreatedAt = DateUtility().stringToDate(json['created_at']);
+    payerUpdateAt = DateUtility().stringToDate(json['update_at']);
+    payerDeleteAt = DateUtility().stringToDate(json['delete_at']);
   }
 
   Map<String, dynamic> mapToFilter() {

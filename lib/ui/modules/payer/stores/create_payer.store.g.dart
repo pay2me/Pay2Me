@@ -65,6 +65,54 @@ mixin _$CreatePayerStore on _CreatePayerStore, Store {
     });
   }
 
+  late final _$cardToFormAtom =
+      Atom(name: '_CreatePayerStore.cardToForm', context: context);
+
+  @override
+  SetCardMapper get cardToForm {
+    _$cardToFormAtom.reportRead();
+    return super.cardToForm;
+  }
+
+  @override
+  set cardToForm(SetCardMapper value) {
+    _$cardToFormAtom.reportWrite(value, super.cardToForm, () {
+      super.cardToForm = value;
+    });
+  }
+
+  late final _$subscriptionToFormAtom =
+      Atom(name: '_CreatePayerStore.subscriptionToForm', context: context);
+
+  @override
+  SetSubscriptionMapper get subscriptionToForm {
+    _$subscriptionToFormAtom.reportRead();
+    return super.subscriptionToForm;
+  }
+
+  @override
+  set subscriptionToForm(SetSubscriptionMapper value) {
+    _$subscriptionToFormAtom.reportWrite(value, super.subscriptionToForm, () {
+      super.subscriptionToForm = value;
+    });
+  }
+
+  late final _$serviceToFormAtom =
+      Atom(name: '_CreatePayerStore.serviceToForm', context: context);
+
+  @override
+  SetServiceMapper get serviceToForm {
+    _$serviceToFormAtom.reportRead();
+    return super.serviceToForm;
+  }
+
+  @override
+  set serviceToForm(SetServiceMapper value) {
+    _$serviceToFormAtom.reportWrite(value, super.serviceToForm, () {
+      super.serviceToForm = value;
+    });
+  }
+
   late final _$submitCreateFormAsyncAction =
       AsyncAction('_CreatePayerStore.submitCreateForm', context: context);
 
@@ -95,6 +143,9 @@ mixin _$CreatePayerStore on _CreatePayerStore, Store {
 isLoading: ${isLoading},
 formKey: ${formKey},
 payerToForm: ${payerToForm},
+cardToForm: ${cardToForm},
+subscriptionToForm: ${subscriptionToForm},
+serviceToForm: ${serviceToForm},
 formIsValid: ${formIsValid}
     ''';
   }

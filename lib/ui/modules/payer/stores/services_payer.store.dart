@@ -50,9 +50,14 @@ abstract class _ServicesPayerStore with Store, ChangeNotifier {
     String? token = Provider.of<MainIndexStore>(context, listen:false).storegeAuthData["userToken"];
 
     CreatePayerCommand createPayerCommand = CreatePayerCommand(
+      payerType: payer.payerType,
+      payerCnpj: payer.payerCnpj,
+      payerCompanyName: payer.payerCompanyName,
+      payerCpf: payer.payerCpf,
       payerName: payer.payerName,
       payerPhone: payer.payerPhone,
-      payerCpf: payer.payerCpf,
+      payerEmail: payer.payerEmail,
+      payerFullName: payer.payerFullName,
       payerAddress: payer.payerAddress,
     );
 
@@ -64,11 +69,15 @@ abstract class _ServicesPayerStore with Store, ChangeNotifier {
     
     UpdatePayerCommand editPayerCommand = UpdatePayerCommand(
       payerId: payer.payerId,
+      payerType: payer.payerType,
+      payerCnpj: payer.payerCnpj,
+      payerCompanyName: payer.payerCompanyName,
+      payerCpf: payer.payerCpf,
       payerName: payer.payerName,
       payerPhone: payer.payerPhone,
-      payerCpf: payer.payerCpf,
+      payerEmail: payer.payerEmail,
+      payerFullName: payer.payerFullName,
       payerAddress: payer.payerAddress,
-      payerCard: payer.payerCard,
     );
 
     return (await payerBusiness.update(editPayerCommand, token!));

@@ -65,6 +65,38 @@ mixin _$UpdatePayerStore on _UpdatePayerStore, Store {
     });
   }
 
+  late final _$cardToFormAtom =
+      Atom(name: '_UpdatePayerStore.cardToForm', context: context);
+
+  @override
+  SetCardMapper get cardToForm {
+    _$cardToFormAtom.reportRead();
+    return super.cardToForm;
+  }
+
+  @override
+  set cardToForm(SetCardMapper value) {
+    _$cardToFormAtom.reportWrite(value, super.cardToForm, () {
+      super.cardToForm = value;
+    });
+  }
+
+  late final _$subscriptionToFormAtom =
+      Atom(name: '_UpdatePayerStore.subscriptionToForm', context: context);
+
+  @override
+  SetSubscriptionMapper get subscriptionToForm {
+    _$subscriptionToFormAtom.reportRead();
+    return super.subscriptionToForm;
+  }
+
+  @override
+  set subscriptionToForm(SetSubscriptionMapper value) {
+    _$subscriptionToFormAtom.reportWrite(value, super.subscriptionToForm, () {
+      super.subscriptionToForm = value;
+    });
+  }
+
   late final _$submitUpdateFormAsyncAction =
       AsyncAction('_UpdatePayerStore.submitUpdateForm', context: context);
 
@@ -95,6 +127,8 @@ mixin _$UpdatePayerStore on _UpdatePayerStore, Store {
 isLoading: ${isLoading},
 formKey: ${formKey},
 payerToForm: ${payerToForm},
+cardToForm: ${cardToForm},
+subscriptionToForm: ${subscriptionToForm},
 formIsValid: ${formIsValid}
     ''';
   }

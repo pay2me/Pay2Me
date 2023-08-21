@@ -1,8 +1,8 @@
 import 'package:pay_2_me/domain/models/export_models.dart';
 
 class UpdatePayerCommand {
-  int? payerId;
-  int? payerType;
+  String? payerId;
+  num? payerType;
   String? payerCnpj;
   String? payerCompanyName;
   String? payerCpf;
