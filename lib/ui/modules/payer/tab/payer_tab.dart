@@ -43,9 +43,11 @@ class PayerTab extends StatelessWidget {
           body: Column(
             children: [
               SearchBarWidget(
-                labelText: "Pesquisar pagador",
-                hintText: "Informe o código do pagador",
+                labelText: "Pesquisar Pagador",
+                hintText: "Informe o nome do pagador",
                 listToFilter: store.payersToFilter,
+                searchController: store.searchController,
+                searchTextNode: store.searchTextNode,
                 onChangedSearch: store.onChangedSearch,
                 onLoadFromFilter: store.onLoadFromFilter,
               ),

@@ -21,6 +21,12 @@ abstract class _MainPayerStore with Store, ChangeNotifier {
   @observable
   List<Map<String, dynamic>> payersToFilter = [];
 
+  @observable
+  TextEditingController searchController = TextEditingController();
+
+  @observable
+  FocusNode searchTextNode = FocusNode();
+
   @computed
   List<SetPayerMapper> get payers => [..._payerList];
 
@@ -34,19 +40,18 @@ abstract class _MainPayerStore with Store, ChangeNotifier {
   Future<void> loadPayers(BuildContext context) async {
     isLoading = true;
 
-    _payerList = await Provider.of<ServicesPayerStore>(context, listen: false)
-        .getPayers(context);
+    _payerList = await Provider.of<ServicesPayerStore>(context, listen: false).searchPayers(context);
     onLoadFromFilter(context);
+    onChangedSearch(searchController.text.isEmpty ? null : searchController.text);
 
     isLoading = false;
   }
 
+
   @action
-  void onChangedSearch(String value) {
-    payersToOverview = _payerList
-        .where((payer) =>
-            payer.payerName!.contains(RegExp(value, caseSensitive: false)))
-        .toList();
+  void onChangedSearch(String? value) {
+    if(value == null) return;
+    payersToOverview = _payerList.where((payer) => payer.payerName!.contains(RegExp(value, caseSensitive: false))).toList();
   }
 
   @action

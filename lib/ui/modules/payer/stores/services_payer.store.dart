@@ -17,10 +17,31 @@ abstract class _ServicesPayerStore with Store, ChangeNotifier {
 
   // GETS
 
-  Future<List<SetPayerMapper>> getPayers(BuildContext context) async {
+  Future<List<SetPayerMapper>> searchPayers(BuildContext context, {
+    String? cpf, 
+    String? cnpj, 
+    String? email, 
+    String? name,
+    String? companyName,
+    String? sortBy,
+    String? orderBy,
+    int? limit,
+    int? offset,
+  }) async {
     String token = Provider.of<MainIndexStore>(context, listen:false).storegeAuthData["token"];
 
-    return (await payerBusiness.getAll(token))??[];
+    return (await payerBusiness.search(
+      token, 
+      cpf: cpf,
+      cnpj: cnpj,
+      email: email,
+      name: name,
+      companyName: companyName,
+      sortBy: sortBy,
+      orderBy: orderBy,
+      limit: limit,
+      offset: offset,
+    ))??[];
   }
 
   // CRUD
@@ -33,10 +54,9 @@ abstract class _ServicesPayerStore with Store, ChangeNotifier {
       payerPhone: payer.payerPhone,
       payerCpf: payer.payerCpf,
       payerAddress: payer.payerAddress,
-      payerCard: payer.payerCard,
     );
 
-    return (await payerBusiness.insert(createPayerCommand, token!));
+    return (await payerBusiness.create(createPayerCommand, token!));
   }
 
   Future<bool> updatePayer(BuildContext context, SetPayerMapper payer) async {

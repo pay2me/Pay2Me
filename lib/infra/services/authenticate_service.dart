@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:pay_2_me/domain/interfaces/services/auth_token_interface.dart';
 
 import 'package:pay_2_me/domain/models/export_models.dart';

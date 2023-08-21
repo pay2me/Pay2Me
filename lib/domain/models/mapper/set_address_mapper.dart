@@ -1,33 +1,59 @@
 class SetAddressMapper {
+  String? addressId;
+  String? addressDescription;
+  String? addressCEP;
+  String? addressStreet;
+  String? addressNumber;
+  String? addressComplement;
+  String? addressNeighborhood;
   String? addressCity;
   String? addressState;
-  String? addressNeighborhood;
-  String? addressCEP;
-  String? addressDescription;
-  String? addressNumber;
+  String? addressCreatedAt;
+  String? addressUpdateAt;
+  String? addressDeleteAt;
 
   SetAddressMapper({
+    this.addressId,
+    this.addressDescription,
+    this.addressCEP,
+    this.addressStreet,
+    this.addressNumber,
+    this.addressComplement,
+    this.addressNeighborhood,
     this.addressCity,
     this.addressState,
-    this.addressNeighborhood,
-    this.addressCEP,
-    this.addressDescription,
-    this.addressNumber,
+    this.addressCreatedAt,
+    this.addressUpdateAt,
+    this.addressDeleteAt,
   });
 
   SetAddressMapper.MapFromJson(Map<String, dynamic> json) {
+    addressId = json['id'];
+    addressDescription = json['description'];
+    addressCEP = json['zipcode'];
+    addressStreet = json['street'];
+    addressNumber = json['number'];
+    addressComplement = json['complement'];
+    addressNeighborhood = json['neighborhood'];
     addressCity = json['city'];
     addressState = json['state'];
-    addressNeighborhood = json['neighborhood'];
-    addressCEP = json['zipcode'];
-    addressDescription = json['description'];
-    addressNumber = json['number'];
+    addressCreatedAt = json['created_at'];
+    addressUpdateAt = json['update_at'];
+    addressDeleteAt = json['delete_at'];
   }
 
   Map<String, dynamic> jsonFromMap() => {
-        'addressCity': addressCity,
-        'addressState': addressState,
-        'addressNeighborhood': addressNeighborhood,
-        'addressCEP': addressCEP,
+        'id': addressId,
+        'description': addressDescription,
+        'zipcode': addressCEP,
+        'street': addressStreet,
+        'number': addressNumber,
+        'complement': addressComplement,
+        'neighborhood': addressNeighborhood,
+        'city': addressCity,
+        'state': addressState,
+        'created_at': addressCreatedAt,
+        'update_at': addressUpdateAt,
+        'delete_at': addressDeleteAt,
       };
 }

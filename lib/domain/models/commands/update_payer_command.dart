@@ -1,6 +1,7 @@
 import 'package:pay_2_me/domain/models/export_models.dart';
 
-class CreatePayerCommand {
+class UpdatePayerCommand {
+  int? payerId;
   int? payerType;
   String? payerCnpj;
   String? payerCompanyName;
@@ -11,7 +12,8 @@ class CreatePayerCommand {
   String? payerFullName;
   SetAddressMapper? payerAddress;
 
-  CreatePayerCommand({
+  UpdatePayerCommand({
+    this.payerId,
     this.payerType,
     this.payerCnpj,
     this.payerCompanyName,
@@ -24,6 +26,7 @@ class CreatePayerCommand {
   });
 
   Map<String, dynamic> MapToJson() => {
+    'id': payerId,
     'person_type': payerType,
     'ein': payerCnpj,
     'company_name': payerCompanyName,

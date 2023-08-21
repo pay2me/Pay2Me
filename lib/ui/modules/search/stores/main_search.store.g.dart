@@ -41,38 +41,6 @@ mixin _$MainSearchStore on _MainSearchStore, Store {
     });
   }
 
-  late final _$controllerAtom =
-      Atom(name: '_MainSearchStore.controller', context: context);
-
-  @override
-  TextEditingController get controller {
-    _$controllerAtom.reportRead();
-    return super.controller;
-  }
-
-  @override
-  set controller(TextEditingController value) {
-    _$controllerAtom.reportWrite(value, super.controller, () {
-      super.controller = value;
-    });
-  }
-
-  late final _$textNodeAtom =
-      Atom(name: '_MainSearchStore.textNode', context: context);
-
-  @override
-  FocusNode get textNode {
-    _$textNodeAtom.reportRead();
-    return super.textNode;
-  }
-
-  @override
-  set textNode(FocusNode value) {
-    _$textNodeAtom.reportWrite(value, super.textNode, () {
-      super.textNode = value;
-    });
-  }
-
   late final _$showFiltersAsyncAction =
       AsyncAction('_MainSearchStore.showFilters', context: context);
 
@@ -89,12 +57,17 @@ mixin _$MainSearchStore on _MainSearchStore, Store {
       ActionController(name: '_MainSearchStore', context: context);
 
   @override
-  void clearSearch(BuildContext context, void Function(String) onChangedSearch,
+  void clearSearch(
+      BuildContext context,
+      TextEditingController searchController,
+      FocusNode searchTextNode,
+      void Function(String) onChangedSearch,
       void Function(BuildContext, {Ordering? ordering}) onLoadFromFilter) {
     final _$actionInfo = _$_MainSearchStoreActionController.startAction(
         name: '_MainSearchStore.clearSearch');
     try {
-      return super.clearSearch(context, onChangedSearch, onLoadFromFilter);
+      return super.clearSearch(context, searchController, searchTextNode,
+          onChangedSearch, onLoadFromFilter);
     } finally {
       _$_MainSearchStoreActionController.endAction(_$actionInfo);
     }
@@ -104,9 +77,7 @@ mixin _$MainSearchStore on _MainSearchStore, Store {
   String toString() {
     return '''
 currentOdering: ${currentOdering},
-selectedOdering: ${selectedOdering},
-controller: ${controller},
-textNode: ${textNode}
+selectedOdering: ${selectedOdering}
     ''';
   }
 }

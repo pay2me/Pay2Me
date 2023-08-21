@@ -79,6 +79,38 @@ mixin _$MainPayerStore on _MainPayerStore, Store {
     });
   }
 
+  late final _$searchControllerAtom =
+      Atom(name: '_MainPayerStore.searchController', context: context);
+
+  @override
+  TextEditingController get searchController {
+    _$searchControllerAtom.reportRead();
+    return super.searchController;
+  }
+
+  @override
+  set searchController(TextEditingController value) {
+    _$searchControllerAtom.reportWrite(value, super.searchController, () {
+      super.searchController = value;
+    });
+  }
+
+  late final _$searchTextNodeAtom =
+      Atom(name: '_MainPayerStore.searchTextNode', context: context);
+
+  @override
+  FocusNode get searchTextNode {
+    _$searchTextNodeAtom.reportRead();
+    return super.searchTextNode;
+  }
+
+  @override
+  set searchTextNode(FocusNode value) {
+    _$searchTextNodeAtom.reportWrite(value, super.searchTextNode, () {
+      super.searchTextNode = value;
+    });
+  }
+
   late final _$loadPayersAsyncAction =
       AsyncAction('_MainPayerStore.loadPayers', context: context);
 
@@ -91,7 +123,7 @@ mixin _$MainPayerStore on _MainPayerStore, Store {
       ActionController(name: '_MainPayerStore', context: context);
 
   @override
-  void onChangedSearch(String value) {
+  void onChangedSearch(String? value) {
     final _$actionInfo = _$_MainPayerStoreActionController.startAction(
         name: '_MainPayerStore.onChangedSearch');
     try {
@@ -118,6 +150,8 @@ mixin _$MainPayerStore on _MainPayerStore, Store {
 isLoading: ${isLoading},
 payersToOverview: ${payersToOverview},
 payersToFilter: ${payersToFilter},
+searchController: ${searchController},
+searchTextNode: ${searchTextNode},
 payers: ${payers},
 payersCount: ${payersCount},
 payersToOverviewCount: ${payersToOverviewCount}

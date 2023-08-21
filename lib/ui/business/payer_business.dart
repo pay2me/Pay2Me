@@ -3,10 +3,23 @@ import 'package:pay_2_me/infra/services/export_services.dart';
 
 class PayerBusiness {
 
-  Future<List<SetPayerMapper>?> getAll(String token) async {
+  Future<List<SetPayerMapper>?> search(
+    String token, 
+    {
+      String? cpf, 
+      String? cnpj, 
+      String? email, 
+      String? name,
+      String? companyName,
+      String? sortBy,
+      String? orderBy,
+      int? limit,
+      int? offset,
+    }
+  ) async {
     try {
       var service = PayerService();
-      var result = await service.getAll(token);
+      var result = await service.search(token);
 
       if(result.code == 406){
         throw const FormatException('Dados formularios invalidos.');
@@ -24,10 +37,10 @@ class PayerBusiness {
     }
   }
 
-  Future<bool> insert(CreatePayerCommand command, String token) async {
+  Future<bool> create(CreatePayerCommand command, String token) async {
     try {
       var service = PayerService();
-      var result = await service.insert(command, token);
+      var result = await service.create(command, token);
 
       if(result == null){
         throw const FormatException('Dados formularios invalidos.');

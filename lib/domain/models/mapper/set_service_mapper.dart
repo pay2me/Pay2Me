@@ -1,33 +1,31 @@
 import 'package:pay_2_me/ui/shared/functions/dateUtility.dart';
 
 class SetServiceMapper {
-  String? serviceName;
-  String? serviceValue;
-  String? serviceFrequency;
-  DateTime? serviceExpirationPlanDate;
-  DateTime? serviceSubscriptionExpirationDate;
+  String? serviceId;
+  String? serviceDescription;
+  num? serviceFixedPrice;
+  num? servicePrice;
+  String? serviceStatus;
+  DateTime? serviceCreateAt;
+  DateTime? serviceUpdateAt;
 
   SetServiceMapper({
-    this.serviceName,
-    this.serviceValue,
-    this.serviceFrequency,
-    this.serviceExpirationPlanDate,
-    this.serviceSubscriptionExpirationDate,
+    this.serviceId,
+    this.serviceDescription,
+    this.serviceFixedPrice,
+    this.servicePrice,
+    this.serviceStatus,
+    this.serviceCreateAt,
+    this.serviceUpdateAt,
   });
 
   SetServiceMapper.MapFromJson(Map<String, dynamic> json) {
-    serviceName = json['serviceName'];
-    serviceValue = json['serviceValue'];
-    serviceFrequency = json['serviceFrequency'];
-    serviceExpirationPlanDate = DateUtility().stringToDate(json['serviceExpirationPlanDate']);
-    serviceSubscriptionExpirationDate = DateUtility().stringToDate(json['serviceSubscriptionExpirationDate']);
+    serviceId= json['id'];
+    serviceDescription= json['description'];
+    serviceFixedPrice= json['fixedprice'];
+    servicePrice= json['price'];
+    serviceStatus= json['status'];
+    serviceCreateAt= DateUtility().stringToDate(json['create_at']);
+    serviceUpdateAt= DateUtility().stringToDate(json['update_at']);
   }
-
-  Map<String, dynamic> jsonFromMap() => {
-    'serviceName': serviceName,
-    'serviceValue': serviceValue,
-    'serviceFrequency': serviceFrequency,
-    'serviceExpirationPlanDate': serviceExpirationPlanDate,
-    'serviceSubscriptionExpirationDate': serviceSubscriptionExpirationDate,
-  };
 }
