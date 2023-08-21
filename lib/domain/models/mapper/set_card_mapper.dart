@@ -1,41 +1,43 @@
 import 'package:pay_2_me/ui/shared/functions/dateUtility.dart';
 
 class SetCardMapper {
-  String? cardPayerId;
   String? cardId;
-  String? cardNumber;
-  String? cardPrintedName;
-  String? cardCvv;
-  String? cardExpirationMonth;
+  String? cardPayerId;
+  String? cardIsDefault;
+  String? cardBrand;
+  String? cardFirst6Digits;
+  String? cardLast4Digits;
   String? cardExpirationYear;
+  String? cardExpirationMonth;
+  DateTime? cardCreateAt;
+  DateTime? cardUpdateAt;
+  DateTime? cardDeleteAt;
 
   SetCardMapper({
-    this.cardPayerId,
     this.cardId,
-    this.cardNumber,
-    this.cardPrintedName,
-    this.cardCvv,
-    this.cardExpirationMonth,
+    this.cardPayerId,
+    this.cardIsDefault,
+    this.cardBrand,
+    this.cardFirst6Digits,
+    this.cardLast4Digits,
     this.cardExpirationYear,
+    this.cardExpirationMonth,
+    this.cardCreateAt,
+    this.cardUpdateAt,
+    this.cardDeleteAt,
   });
 
   SetCardMapper.MapFromJson(Map<String, dynamic> json) {
-    cardPayerId = json['customer_id'];
     cardId = json['id'];
-    cardNumber = json['number'];
-    cardPrintedName = json['name'];
-    cardCvv = json['security_code'];
-    cardExpirationMonth = json['expiration_month'];
+    cardPayerId = json['customer_id'];
+    cardIsDefault = json['default'];
+    cardBrand = json['brand'];
+    cardFirst6Digits = json['first6_digits'];
+    cardLast4Digits = json['last4_digits'];
     cardExpirationYear = json['expiration_year'];
+    cardExpirationMonth = json['expiration_month'];
+    cardCreateAt = DateUtility().stringToDate(json['createat']);
+    cardUpdateAt = DateUtility().stringToDate(json['updateat']);
+    cardDeleteAt = DateUtility().stringToDate(json['deleteat']);
   }
-
-  Map<String, dynamic> jsonFromMap() => {
-        'customer_id': cardPayerId,
-        'cardId': cardId,
-        'cardNumber': cardNumber,
-        'cardPrintedName': cardPrintedName,
-        'cardCvv': cardCvv,
-        'expiration_month': cardExpirationMonth,
-        'expiration_year': cardExpirationYear,
-      };
 }

@@ -9,7 +9,7 @@ class GetCardQuery {
   GetCardQuery({this.cards, this.success, this.code});
 
   GetCardQuery.MapFromResponse(Response response) {
-    Iterable data = response.data;
+    Iterable data = response.data["data"];
     cards = data.map((i) => SetCardMapper.MapFromJson(i)).toList();
     code = response.statusCode;
     success = response.statusMessage=="OK"?true:false;

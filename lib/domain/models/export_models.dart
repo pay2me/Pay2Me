@@ -1,11 +1,11 @@
 // Commands
 export 'package:pay_2_me/domain/models/commands/create_card_command.dart';
 export 'package:pay_2_me/domain/models/commands/delete_card_command.dart';
-export 'package:pay_2_me/domain/models/commands/update_card_command.dart';
 
 export 'package:pay_2_me/domain/models/commands/create_payer_command.dart';
 export 'package:pay_2_me/domain/models/commands/delete_payer_command.dart';
 export 'package:pay_2_me/domain/models/commands/update_payer_command.dart';
+
 export 'package:pay_2_me/domain/models/commands/create_service_command.dart';
 export 'package:pay_2_me/domain/models/commands/delete_service_command.dart';
 export 'package:pay_2_me/domain/models/commands/update_service_command.dart';
