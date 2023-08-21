@@ -1,6 +1,6 @@
 import 'package:pay_2_me/ui/shared/functions/dateUtility.dart';
 
-class SetServiceMapper {
+class SetProductMapper {
   String? serviceId;
   String? serviceDescription;
   num? serviceFixedPrice;
@@ -9,7 +9,7 @@ class SetServiceMapper {
   DateTime? serviceCreateAt;
   DateTime? serviceUpdateAt;
 
-  SetServiceMapper({
+  SetProductMapper({
     this.serviceId,
     this.serviceDescription,
     this.serviceFixedPrice,
@@ -19,7 +19,7 @@ class SetServiceMapper {
     this.serviceUpdateAt,
   });
 
-  SetServiceMapper.MapFromJson(Map<String, dynamic> json) {
+  SetProductMapper.MapFromJson(Map<String, dynamic> json) {
     serviceId= json['id'];
     serviceDescription= json['description'];
     serviceFixedPrice= json['fixedprice'];

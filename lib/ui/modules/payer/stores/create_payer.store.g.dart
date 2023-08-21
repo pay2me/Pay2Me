@@ -101,13 +101,13 @@ mixin _$CreatePayerStore on _CreatePayerStore, Store {
       Atom(name: '_CreatePayerStore.serviceToForm', context: context);
 
   @override
-  SetServiceMapper get serviceToForm {
+  SetProductMapper get serviceToForm {
     _$serviceToFormAtom.reportRead();
     return super.serviceToForm;
   }
 
   @override
-  set serviceToForm(SetServiceMapper value) {
+  set serviceToForm(SetProductMapper value) {
     _$serviceToFormAtom.reportWrite(value, super.serviceToForm, () {
       super.serviceToForm = value;
     });

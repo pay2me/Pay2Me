@@ -1,11 +1,11 @@
 class DeleteSubscriptionItemCommand {
-  String? subscriptionServiceId;
+  String? subscriptionProductId;
 
   DeleteSubscriptionItemCommand({
-    this.subscriptionServiceId,
+    this.subscriptionProductId,
   });
 
   Map<String, dynamic> MapToJson() => {
-    'id': subscriptionServiceId,
+    'id': subscriptionProductId,
   };
 }

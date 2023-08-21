@@ -1,7 +1,7 @@
-class DeleteServiceCommand {
+class DeleteProductCommand {
   String? serviceId;
 
-  DeleteServiceCommand({
+  DeleteProductCommand({
     this.serviceId,
   });
 

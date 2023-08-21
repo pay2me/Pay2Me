@@ -4,7 +4,7 @@ class SetSubscriptionItemMapper {
   String? subscriptionItemGeneratedInstallments;
   String? subscriptionItemNumberInstallments;
   String? subscriptionItemPrice;
-  String? subscriptionItemProductsServicesId;
+  String? subscriptionItemProductsProductsId;
   String? subscriptionItemQuantity;
   String? subscriptionItemType;
 
@@ -14,7 +14,7 @@ class SetSubscriptionItemMapper {
     this.subscriptionItemGeneratedInstallments,
     this.subscriptionItemNumberInstallments,
     this.subscriptionItemPrice,
-    this.subscriptionItemProductsServicesId,
+    this.subscriptionItemProductsProductsId,
     this.subscriptionItemQuantity,
     this.subscriptionItemType,
   });
@@ -25,7 +25,7 @@ class SetSubscriptionItemMapper {
     subscriptionItemGeneratedInstallments = json['generated_installments'];
     subscriptionItemNumberInstallments = json['number_installments'];
     subscriptionItemPrice = json['price'];
-    subscriptionItemProductsServicesId = json['products_services_id'];
+    subscriptionItemProductsProductsId = json['products_services_id'];
     subscriptionItemQuantity = json['quantity'];
     subscriptionItemType = json['type'];
   }
@@ -36,7 +36,7 @@ class SetSubscriptionItemMapper {
     "generated_installments": subscriptionItemGeneratedInstallments,
     "number_installments": subscriptionItemNumberInstallments,
     "price": subscriptionItemPrice,
-    "products_services_id": subscriptionItemProductsServicesId,
+    "products_services_id": subscriptionItemProductsProductsId,
     "quantity": subscriptionItemQuantity,
     "type": subscriptionItemType,
   };

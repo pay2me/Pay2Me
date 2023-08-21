@@ -1,11 +1,11 @@
-class UpdateServiceCommand {
+class UpdateProductCommand {
   String? serviceId;
   String? serviceDescription;
   num? serviceFixedPrice;
   num? servicePrice;
   String? serviceStatus;
 
-  UpdateServiceCommand({
+  UpdateProductCommand({
     this.serviceId,
     this.serviceDescription,
     this.serviceFixedPrice,

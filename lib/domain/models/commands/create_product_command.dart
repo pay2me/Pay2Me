@@ -1,10 +1,10 @@
-class CreateServiceCommand {
+class CreateProductCommand {
   String? serviceDescription;
   num? serviceFixedPrice;
   num? servicePrice;
   String? serviceStatus;
 
-  CreateServiceCommand({
+  CreateProductCommand({
     this.serviceDescription,
     this.serviceFixedPrice,
     this.servicePrice,

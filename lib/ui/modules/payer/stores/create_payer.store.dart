@@ -25,7 +25,7 @@ abstract class _CreatePayerStore with Store, ChangeNotifier {
   @observable
   SetSubscriptionMapper subscriptionToForm = SetSubscriptionMapper();
   @observable
-  SetServiceMapper serviceToForm = SetServiceMapper();
+  SetProductMapper serviceToForm = SetProductMapper();
 
   Map<String, bool> validityOfFields = ObservableMap<String, bool>();
 
