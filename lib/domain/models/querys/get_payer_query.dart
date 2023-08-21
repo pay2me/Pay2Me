@@ -9,9 +9,9 @@ class GetPayerQuery {
   GetPayerQuery({this.payers, this.success, this.code});
 
   GetPayerQuery.MapFromResponse(Response response) {
-    Iterable data = response.data;
+    Iterable data = response.data["data"];
     payers = data.map((i) => SetPayerMapper.MapFromJson(i)).toList();
     code = response.statusCode;
-    success = response.statusMessage=="OK"?true:false;
+    success = response.statusMessage == "OK" ? true : false;
   }
 }
