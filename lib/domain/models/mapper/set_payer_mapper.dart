@@ -47,8 +47,8 @@ class SetPayerMapper {
     payerAddress = SetAddressMapper.MapFromJson(json['address']);
     payerDocument = json['document'];
     payerCreatedAt = DateUtility().stringToDate(json['created_at']);
-    payerUpdateAt = DateUtility().stringToDate(json['update_at']);
-    payerDeleteAt = DateUtility().stringToDate(json['delete_at']);
+    payerUpdateAt = DateUtility().stringToDate(json['updated_at']);
+    payerDeleteAt = DateUtility().stringToDate(json['deleted_at']);
   }
 
   Map<String, dynamic> mapToFilter() {

@@ -60,7 +60,6 @@ class AuthenticateService implements IAuthenticateService, IAuthTokenService {
   @override
   Future<GetAuthTokenQuery> getAuthToken() async {
     var url = "${Settings.cobreFacilEndPoint}/authenticate";
-    // try {
     var response = await Dio().post(
       url,
       data: {
@@ -69,9 +68,5 @@ class AuthenticateService implements IAuthenticateService, IAuthTokenService {
       },
     );
     return GetAuthTokenQuery.MapFromResponse(response);
-    // } catch (e) {
-    //   debugPrint(e.toString());
-    // }
-    // return GetAuthTokenQuery();
   }
 }

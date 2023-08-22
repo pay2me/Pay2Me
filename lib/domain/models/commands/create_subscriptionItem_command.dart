@@ -1,16 +1,16 @@
 class CreateSubscriptionItemCommand {
-  String? serviceId;
+  String? productId;
   num? quantity;
   num? price;
 
   CreateSubscriptionItemCommand({
-    this.serviceId,
+    this.productId,
     this.quantity,
     this.price,
   });
 
   Map<String, dynamic> MapToJson() => {
-    'products_services_id': serviceId,
+    'products_products_id': productId,
     'quantity': quantity,
     'price': price,
   };

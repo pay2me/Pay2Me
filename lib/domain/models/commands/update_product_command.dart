@@ -1,23 +1,23 @@
 class UpdateProductCommand {
-  String? serviceId;
-  String? serviceDescription;
-  num? serviceFixedPrice;
-  num? servicePrice;
-  String? serviceStatus;
+  String? productId;
+  String? productDescription;
+  num? productFixedPrice;
+  num? productPrice;
+  String? productStatus;
 
   UpdateProductCommand({
-    this.serviceId,
-    this.serviceDescription,
-    this.serviceFixedPrice,
-    this.servicePrice,
-    this.serviceStatus,
+    this.productId,
+    this.productDescription,
+    this.productFixedPrice,
+    this.productPrice,
+    this.productStatus,
   });
 
   Map<String, dynamic> MapToJson() => {
-    'id': serviceId,
-    'description': serviceDescription,
-    'fixedPrice': serviceFixedPrice,
-    'price': servicePrice,
-    'status': serviceStatus,
+    'id': productId,
+    'description': productDescription,
+    'fixedPrice': productFixedPrice,
+    'price': productPrice,
+    'status': productStatus,
   };
 }

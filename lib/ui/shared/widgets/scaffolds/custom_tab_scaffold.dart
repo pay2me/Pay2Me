@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:pay_2_me/ui/modules/drawer/widgets/custom_drawer_widget.dart';
 import 'package:pay_2_me/ui/mains/app_routes.dart';
 
 class CustomTabScaffold extends StatelessWidget {
   final String title;
-  final bool automaticallyImplyLeading;
+  final PageController? pageController;
   final List<Widget>? actionsAppBar;
   final Widget? body;
   final Widget? bottomSheet;
 
   const CustomTabScaffold({
     required this.title,
-    this.automaticallyImplyLeading = true,
+    this.pageController,
     this.body,
     this.bottomSheet,
     this.actionsAppBar,
@@ -18,7 +19,7 @@ class CustomTabScaffold extends StatelessWidget {
   }) : super(key: key);
 
   Future<bool> onWillPop(BuildContext context) async {
-    if (title == "Áreas") {
+    if (title == "Pagadores") {
       return await showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -50,13 +51,14 @@ class CustomTabScaffold extends StatelessWidget {
       onWillPop: () async => await onWillPop(context),
       child: Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: automaticallyImplyLeading,
           title: Text(
             title,
           ),
           actions: actionsAppBar,
           iconTheme: Theme.of(context).iconTheme,
         ),
+        drawer:
+            pageController != null ? CustomDrawerWidget(pageController) : null,
         body: body,
         bottomSheet: bottomSheet,
       ),

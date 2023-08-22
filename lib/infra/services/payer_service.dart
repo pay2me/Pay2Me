@@ -20,7 +20,37 @@ class PayerService implements IPayerService {
       int? offset,
     }
   ) async {
-    var url = "${Settings.cobreFacilEndPoint}/customers?taxpayer_id=$cpf&ein=$cnpj&email=$email&personal_name=$name&company_name=$companyName&sort_by=$sortBy&order_by=$orderBy&limit=$limit&offset=$offset";
+    final List<String> queryParams = [];
+    if (cpf != null) {
+      queryParams.add("taxpayer_id=$cpf");
+    }
+    if (cnpj != null) {
+      queryParams.add("ein=$cnpj");
+    }
+    if (email != null) {
+      queryParams.add("email=$email");
+    }
+    if (name != null) {
+      queryParams.add("personal_name=$name");
+    }
+    if (companyName != null) {
+      queryParams.add("company_name=$companyName");
+    }
+    if (sortBy != null) {
+      queryParams.add("sort_by=$sortBy");
+    }
+    if (orderBy != null) {
+      queryParams.add("order_by=$orderBy");
+    }
+    if (limit != null) {
+      queryParams.add("limit=$limit");
+    }
+    if (offset != null) {
+      queryParams.add("offset=$offset");
+    }
+
+    final String queryString = queryParams.join('&');
+    final String url = "${Settings.cobreFacilEndPoint}/customers?$queryString";
     var response = await Dio().get(url,
         options: Options(
           headers: {
@@ -32,7 +62,7 @@ class PayerService implements IPayerService {
 
   @override
   Future<bool?> create(CreatePayerCommand command, String token) async {
-    var url = "${Settings.cobreFacilEndPoint}/payers.json";
+    var url = "${Settings.cobreFacilEndPoint}/customers";
     var response = await Dio().post(url,
         data: command.MapToJson(),
         options: Options(
@@ -46,8 +76,8 @@ class PayerService implements IPayerService {
 
   @override
   Future<bool?> update(UpdatePayerCommand command, String token) async {
-    var url = "${Settings.cobreFacilEndPoint}/payers/${command.payerId}.json";
-    var response = await Dio().patch(url,
+    var url = "${Settings.cobreFacilEndPoint}/customers/${command.payerId}";
+    var response = await Dio().put(url,
         data: command.MapToJson(),
         options: Options(
           headers: {
@@ -60,7 +90,7 @@ class PayerService implements IPayerService {
 
   @override
   Future<bool?> delete(DeletePayerCommand command, String token) async {
-    var url = "${Settings.cobreFacilEndPoint}/payers/${command.payerId}.json";
+    var url = "${Settings.cobreFacilEndPoint}/customers/${command.payerId}";
     var response = await Dio().delete(url,
         data: command.MapToJson(),
         options: Options(

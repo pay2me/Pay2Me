@@ -1,31 +1,39 @@
 import 'package:pay_2_me/ui/shared/functions/dateUtility.dart';
 
 class SetProductMapper {
-  String? serviceId;
-  String? serviceDescription;
-  num? serviceFixedPrice;
-  num? servicePrice;
-  String? serviceStatus;
-  DateTime? serviceCreateAt;
-  DateTime? serviceUpdateAt;
+  String? productId;
+  String? productDescription;
+  num? productFixedPrice;
+  num? productPrice;
+  String? productStatus;
+  DateTime? productCreateAt;
+  DateTime? productUpdateAt;
 
   SetProductMapper({
-    this.serviceId,
-    this.serviceDescription,
-    this.serviceFixedPrice,
-    this.servicePrice,
-    this.serviceStatus,
-    this.serviceCreateAt,
-    this.serviceUpdateAt,
+    this.productId,
+    this.productDescription,
+    this.productFixedPrice,
+    this.productPrice,
+    this.productStatus,
+    this.productCreateAt,
+    this.productUpdateAt,
   });
 
   SetProductMapper.MapFromJson(Map<String, dynamic> json) {
-    serviceId= json['id'];
-    serviceDescription= json['description'];
-    serviceFixedPrice= json['fixedprice'];
-    servicePrice= json['price'];
-    serviceStatus= json['status'];
-    serviceCreateAt= DateUtility().stringToDate(json['create_at']);
-    serviceUpdateAt= DateUtility().stringToDate(json['update_at']);
+    print(json);
+    productId = json['id'];
+    productDescription = json['description'];
+    productFixedPrice = json['fixed_price'];
+    productPrice = num.tryParse(json['price'].toString());
+    productStatus = json['status'];
+    productCreateAt = DateUtility().stringToDate(json['created_at']);
+    productUpdateAt = DateUtility().stringToDate(json['updated_at']);
+  }
+
+  Map<String, dynamic> mapToFilter() {
+    return {
+      "id": productId,
+      "name": productDescription ?? "",
+    };
   }
 }

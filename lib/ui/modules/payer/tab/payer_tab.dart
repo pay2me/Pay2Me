@@ -7,7 +7,8 @@ import 'package:pay_2_me/ui/shared/widgets/scaffolds/custom_tab_scaffold.dart';
 import 'package:provider/provider.dart';
 
 class PayerTab extends StatelessWidget {
-  const PayerTab({Key? key}) : super(key: key);
+  final PageController pageController;
+  const PayerTab(this.pageController, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class PayerTab extends StatelessWidget {
       builder: (ctx, snapshot) => Observer(
         builder: (context) => CustomTabScaffold(
           title: "Pagadores",
-          automaticallyImplyLeading: false,
+          pageController: pageController,
           actionsAppBar: [
             IconButton(
               onPressed: store.isLoading
@@ -56,8 +57,8 @@ class PayerTab extends StatelessWidget {
                 children: [
                   Expanded(child: Text("")),
                   Expanded(child: Text("NOME")),
-                  Expanded(child: Text("SERVIÇO")),
-                  Expanded(child: Text("SITUAÇÃO")),
+                  Expanded(child: Text("TIPO")),
+                  Expanded(child: Text("CPF ou CNPJ")),
                 ],
               ),
               snapshot.connectionState == ConnectionState.waiting ||

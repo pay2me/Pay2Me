@@ -13,31 +13,15 @@ mixin _$MainIndexStore on _MainIndexStore, Store {
       Atom(name: '_MainIndexStore.storegeAuthData', context: context);
 
   @override
-  Map<String, dynamic> get storegeAuthData {
+  SetAuthenticateMapper get storegeAuthData {
     _$storegeAuthDataAtom.reportRead();
     return super.storegeAuthData;
   }
 
   @override
-  set storegeAuthData(Map<String, dynamic> value) {
+  set storegeAuthData(SetAuthenticateMapper value) {
     _$storegeAuthDataAtom.reportWrite(value, super.storegeAuthData, () {
       super.storegeAuthData = value;
-    });
-  }
-
-  late final _$isAdminAtom =
-      Atom(name: '_MainIndexStore.isAdmin', context: context);
-
-  @override
-  bool? get isAdmin {
-    _$isAdminAtom.reportRead();
-    return super.isAdmin;
-  }
-
-  @override
-  set isAdmin(bool? value) {
-    _$isAdminAtom.reportWrite(value, super.isAdmin, () {
-      super.isAdmin = value;
     });
   }
 
@@ -52,8 +36,7 @@ mixin _$MainIndexStore on _MainIndexStore, Store {
   @override
   String toString() {
     return '''
-storegeAuthData: ${storegeAuthData},
-isAdmin: ${isAdmin}
+storegeAuthData: ${storegeAuthData}
     ''';
   }
 }

@@ -17,7 +17,7 @@ class PayerTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final random = Random();
-    
+
     Color randomColor = Color.fromARGB(
       255,
       random.nextInt(256),
@@ -25,15 +25,14 @@ class PayerTile extends StatelessWidget {
       random.nextInt(256),
     );
 
-    DateTime expirationPlanDate = payer.payerService?.serviceExpirationPlanDate??DateTime.now().subtract(Duration(days: 1));
-    DateTime subscriptionExpirationDate = payer.payerService?.serviceSubscriptionExpirationDate??DateTime.now().subtract(Duration(days: 1));
+    // DateTime expirationPlanDate = payer.payerService?.serviceExpirationPlanDate??DateTime.now().subtract(Duration(days: 1));
+    // DateTime subscriptionExpirationDate = payer.payerService?.serviceSubscriptionExpirationDate??DateTime.now().subtract(Duration(days: 1));
 
-    bool isActivate = (expirationPlanDate.isAfter(DateTime.now()) && subscriptionExpirationDate.isAfter(DateTime.now())) ? true : false;
+    // bool isActivate = (expirationPlanDate.isAfter(DateTime.now()) && subscriptionExpirationDate.isAfter(DateTime.now())) ? true : false;
 
-    final contrastColor = randomColor.computeLuminance() > 0.5
-        ? Colors.black
-        : Colors.white;
-    
+    final contrastColor =
+        randomColor.computeLuminance() > 0.5 ? Colors.black : Colors.white;
+
     return GestureDetector(
       onTap: () {
         Navigator.of(context).pushNamed(
@@ -42,39 +41,35 @@ class PayerTile extends StatelessWidget {
         );
       },
       child: Card(
-        color: Colors.transparent,
-        elevation: 0,
-        child: Container(
-          color: index%2 == 0 ? Colors.white : Color.fromARGB(255, 235, 235, 235),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: Row(
-              children: [
-                Expanded(
-                  child: CircleAvatar(
-                    backgroundColor: randomColor,
-                    child: Text(
-                      "${payer.payerName?[0]}",
-                      style: TextStyle(
-                        color: contrastColor,
-                        fontSize: 24,
+          color: Colors.transparent,
+          elevation: 0,
+          child: Container(
+            color: index % 2 == 0
+                ? Colors.white
+                : Color.fromARGB(255, 235, 235, 235),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: CircleAvatar(
+                      backgroundColor: randomColor,
+                      child: Text(
+                        "${payer.payerName?[0]}",
+                        style: TextStyle(
+                          color: contrastColor,
+                          fontSize: 24,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Expanded(child: Text("${payer.payerName}")),
-                Expanded(child: Text("${payer.payerService?.serviceName}")),
-                Expanded(
-                  child: Text( isActivate
-                    ? "Ativo"
-                    : "Desativo",
-                  ),
-                ),
-              ],
+                  Expanded(child: Text("${payer.payerName}")),
+                  Expanded(child: Text(payer.payerType == 1 ? "Pessoa Física": "Pessoa Jurídica")),
+                  Expanded(child: Text(payer.payerType == 1 ? "${payer.payerCpf}" : "${payer.payerCnpj}")),
+                ],
+              ),
             ),
-          ),
-        )
-      ),
+          )),
     );
   }
 }

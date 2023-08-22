@@ -1,4 +1,7 @@
-2023/08/18-15:52:18.300 2b34 Reusing MANIFEST C:\Users\oscar\AppData\Local\Temp\flutter_tools.6c7bc82f\flutter_tools_chrome_device.975195c7\Default\Local Storage\leveldb/MANIFEST-000001
-2023/08/18-15:52:18.303 2b34 Recovering log #4
-2023/08/18-15:52:18.316 2b34 Reusing old log C:\Users\oscar\AppData\Local\Temp\flutter_tools.6c7bc82f\flutter_tools_chrome_device.975195c7\Default\Local Storage\leveldb/000004.log 
-2023/08/18-15:52:18.320 2b34 Delete type=0 #3
+2023/08/21-22:21:12.572 3144 Reusing MANIFEST C:\Users\oscar\AppData\Local\Temp\flutter_tools.8977e703\flutter_tools_chrome_device.2dc29a81\Default\Local Storage\leveldb/MANIFEST-000001
+2023/08/21-22:21:12.577 3144 Recovering log #4
+2023/08/21-22:21:12.585 3144 Reusing old log C:\Users\oscar\AppData\Local\Temp\flutter_tools.8977e703\flutter_tools_chrome_device.2dc29a81\Default\Local Storage\leveldb/000004.log 
+2023/08/21-22:21:12.593 3144 Delete type=0 #3
+2023/08/21-22:34:43.112 3144 Level-0 table #8: started
+2023/08/21-22:34:43.125 3144 Level-0 table #8: 29928 bytes OK
+2023/08/21-22:34:43.128 3144 Delete type=0 #4

@@ -25,7 +25,7 @@ class SetSubscriptionItemMapper {
     subscriptionItemGeneratedInstallments = json['generated_installments'];
     subscriptionItemNumberInstallments = json['number_installments'];
     subscriptionItemPrice = json['price'];
-    subscriptionItemProductsProductsId = json['products_services_id'];
+    subscriptionItemProductsProductsId = json['products_products_id'];
     subscriptionItemQuantity = json['quantity'];
     subscriptionItemType = json['type'];
   }
@@ -36,7 +36,7 @@ class SetSubscriptionItemMapper {
     "generated_installments": subscriptionItemGeneratedInstallments,
     "number_installments": subscriptionItemNumberInstallments,
     "price": subscriptionItemPrice,
-    "products_services_id": subscriptionItemProductsProductsId,
+    "products_products_id": subscriptionItemProductsProductsId,
     "quantity": subscriptionItemQuantity,
     "type": subscriptionItemType,
   };

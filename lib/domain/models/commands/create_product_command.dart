@@ -1,20 +1,20 @@
 class CreateProductCommand {
-  String? serviceDescription;
-  num? serviceFixedPrice;
-  num? servicePrice;
-  String? serviceStatus;
+  String? productDescription;
+  num? productFixedPrice;
+  num? productPrice;
+  String? productStatus;
 
   CreateProductCommand({
-    this.serviceDescription,
-    this.serviceFixedPrice,
-    this.servicePrice,
-    this.serviceStatus,
+    this.productDescription,
+    this.productFixedPrice,
+    this.productPrice,
+    this.productStatus,
   });
 
   Map<String, dynamic> MapToJson() => {
-    'description': serviceDescription,
-    'fixedPrice': serviceFixedPrice,
-    'price': servicePrice,
-    'status': serviceStatus,
+    'description': productDescription,
+    'fixedPrice': productFixedPrice,
+    'price': productPrice,
+    'status': productStatus,
   };
 }

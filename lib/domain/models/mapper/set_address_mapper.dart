@@ -38,8 +38,8 @@ class SetAddressMapper {
     addressCity = json['city'];
     addressState = json['state'];
     addressCreatedAt = json['created_at'];
-    addressUpdateAt = json['update_at'];
-    addressDeleteAt = json['delete_at'];
+    addressUpdateAt = json['updated_at'];
+    addressDeleteAt = json['deleted_at'];
   }
 
   Map<String, dynamic> jsonFromMap() => {
@@ -53,7 +53,7 @@ class SetAddressMapper {
         'city': addressCity,
         'state': addressState,
         'created_at': addressCreatedAt,
-        'update_at': addressUpdateAt,
-        'delete_at': addressDeleteAt,
+        'updated_at': addressUpdateAt,
+        'deleted_at': addressDeleteAt,
       };
 }
