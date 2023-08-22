@@ -51,7 +51,6 @@ abstract class _ServicesProductStore with Store, ChangeNotifier {
 
     CreateProductCommand createProductCommand = CreateProductCommand(
       productDescription: product.productDescription,
-      productFixedPrice: 0,
       productPrice: product.productPrice,
       productStatus: "actived",
     );
