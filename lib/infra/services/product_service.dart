@@ -45,7 +45,7 @@ class ProductService implements IProductService {
   }
 
   @override
-  Future<bool?> create(CreateProductCommand command, String token) async {
+  Future<GetProductQuery> create(CreateProductCommand command, String token) async {
     var url = "${Settings.cobreFacilEndPoint}/product-services";
     var response = await Dio().post(url,
         data: command.MapToJson(),
@@ -54,12 +54,11 @@ class ProductService implements IProductService {
             "authorization": "Bearer $token",
           },
         ));
-    var result = response.data;
-    return result != null;
+    return GetProductQuery.MapFromResponse(response);
   }
 
   @override
-  Future<bool?> update(UpdateProductCommand command, String token) async {
+  Future<GetProductQuery> update(UpdateProductCommand command, String token) async {
     var url = "${Settings.cobreFacilEndPoint}/product-services/${command.productId}";
     var response = await Dio().put(url,
         data: command.MapToJson(),
@@ -68,12 +67,11 @@ class ProductService implements IProductService {
             "authorization": "Bearer $token",
           },
         ));
-    var result = response.data;
-    return result != null;
+    return GetProductQuery.MapFromResponse(response);
   }
 
   @override
-  Future<bool?> delete(DeleteProductCommand command, String token) async {
+  Future<GetProductQuery> delete(DeleteProductCommand command, String token) async {
     var url = "${Settings.cobreFacilEndPoint}/product-services/${command.productId}";
     var response = await Dio().delete(url,
         data: command.MapToJson(),
@@ -82,12 +80,11 @@ class ProductService implements IProductService {
             "authorization": "Bearer $token",
           },
         ));
-    var result = response.data;
-    return result == null;
+    return GetProductQuery.MapFromResponse(response);
   }
   
   @override
-  Future<bool?> active(String serviceId, String token) async {
+  Future<GetProductQuery> active(String serviceId, String token) async {
     var url = "${Settings.cobreFacilEndPoint}/product-services/$serviceId/activate";
     var response = await Dio().delete(url,
         options: Options(
@@ -95,12 +92,11 @@ class ProductService implements IProductService {
             "authorization": "Bearer $token",
           },
         ));
-    var result = response.data;
-    return result == null;
+    return GetProductQuery.MapFromResponse(response);
   }
   
   @override
-  Future<bool?> inactive(String serviceId, String token) async {
+  Future<GetProductQuery> inactive(String serviceId, String token) async {
     var url = "${Settings.cobreFacilEndPoint}/product-services/$serviceId/inactivate";
     var response = await Dio().delete(url,
         options: Options(
@@ -108,7 +104,6 @@ class ProductService implements IProductService {
             "authorization": "Bearer $token",
           },
         ));
-    var result = response.data;
-    return result == null;
+    return GetProductQuery.MapFromResponse(response);
   }
 }

@@ -57,12 +57,10 @@ abstract class _DetailProductStore with Store, ChangeNotifier {
     if (isDelete) {
       isLoading = true;
 
-      bool deleteComplete =
-          await Provider.of<ServicesProductStore>(context, listen: false)
-              .deleteProduct(context, product);
-      showMessage(context, deleteComplete);
+      String? productDeletedId = await Provider.of<ServicesProductStore>(context, listen: false).deleteProduct(context, product);
+      showMessage(context, (productDeletedId != null));
 
-      if (deleteComplete) {
+      if (productDeletedId == null) {
         await Provider.of<MainProductStore>(context, listen: false)
             .loadProducts(context);
         Navigator.of(context).pop();

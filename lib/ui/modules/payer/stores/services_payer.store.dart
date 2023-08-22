@@ -50,16 +50,13 @@ abstract class _ServicesPayerStore with Store, ChangeNotifier {
 
   // CRUD
 
-  Future<bool> createPayer(BuildContext context, SetPayerMapper payer) async {
+  Future<String?> createPayer(BuildContext context, SetPayerMapper payer) async {
     String token = Provider.of<MainIndexStore>(context, listen: false)
             .storegeAuthData
             .authToken ??
         "";
 
     CreatePayerCommand createPayerCommand = CreatePayerCommand(
-      payerType: payer.payerType,
-      payerCnpj: payer.payerCnpj,
-      payerCompanyName: payer.payerCompanyName,
       payerCpf: payer.payerCpf,
       payerName: payer.payerName,
       payerPhone: payer.payerPhone,
@@ -71,7 +68,7 @@ abstract class _ServicesPayerStore with Store, ChangeNotifier {
     return (await payerBusiness.create(createPayerCommand, token));
   }
 
-  Future<bool> updatePayer(BuildContext context, SetPayerMapper payer) async {
+  Future<String?> updatePayer(BuildContext context, SetPayerMapper payer) async {
     String token = Provider.of<MainIndexStore>(context, listen: false)
             .storegeAuthData
             .authToken ??
@@ -93,7 +90,7 @@ abstract class _ServicesPayerStore with Store, ChangeNotifier {
     return (await payerBusiness.update(editPayerCommand, token));
   }
 
-  Future<bool> deletePayer(BuildContext context, SetPayerMapper payer) async {
+  Future<String?> deletePayer(BuildContext context, SetPayerMapper payer) async {
     String token = Provider.of<MainIndexStore>(context, listen: false)
             .storegeAuthData
             .authToken ??

@@ -4,11 +4,11 @@ import 'package:pay_2_me/domain/models/mapper/set_subscription_mapper.dart';
 class UpdateSubscriptionCommand {
   String? subscriptionId;
   String? subscriptionPayerId;
-  String? subscriptionExpiresAt;
-  String? subscriptionFirstDueDate;
-  String? subscriptionGenerateDays;
+  DateTime? subscriptionExpiresAt;
+  DateTime? subscriptionFirstDueDate;
+  num? subscriptionGenerateDays;
   String? subscriptionIntervalType;
-  String? subscriptionIntervalSize;
+  num? subscriptionIntervalSize;
   List<SetSubscriptionItemMapper>? subscriptionItems;
   String? subscriptionNotificationRuleId;
   String? subscriptionPayableWith;

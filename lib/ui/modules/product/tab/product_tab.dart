@@ -57,8 +57,8 @@ class ProductTab extends StatelessWidget {
                 children: [
                   Expanded(child: Text("")),
                   Expanded(child: Text("NOME")),
-                  Expanded(child: Text("SERVIÇO")),
-                  Expanded(child: Text("SITUAÇÃO")),
+                  Expanded(child: Text("PREÇO")),
+                  Expanded(child: Text("STATUS")),
                 ],
               ),
               snapshot.connectionState == ConnectionState.waiting || store.isLoading

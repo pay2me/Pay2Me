@@ -18,7 +18,7 @@ class SubscriptionService implements ISubscriptionService {
   }
 
   @override
-  Future<bool?> create(CreateSubscriptionCommand command, String token) async {
+  Future<GetSubscriptionQuery> create(CreateSubscriptionCommand command, String token) async {
     var url = "${Settings.cobreFacilEndPoint}/subscriptions";
     var response = await Dio().post(url,
         data: command.MapToJson(),
@@ -27,12 +27,11 @@ class SubscriptionService implements ISubscriptionService {
             "authorization": "Bearer $token",
           },
         ));
-    var result = response.data;
-    return result != null;
+    return GetSubscriptionQuery.MapFromResponse(response);
   }
 
   @override
-  Future<bool?> update(UpdateSubscriptionCommand command, String token) async {
+  Future<GetSubscriptionQuery> update(UpdateSubscriptionCommand command, String token) async {
     var url =
         "${Settings.cobreFacilEndPoint}/subscriptions/${command.subscriptionId}/update";
     var response = await Dio().put(url,
@@ -42,12 +41,11 @@ class SubscriptionService implements ISubscriptionService {
             "authorization": "Bearer $token",
           },
         ));
-    var result = response.data;
-    return result != null;
+    return GetSubscriptionQuery.MapFromResponse(response);
   }
 
   @override
-  Future<bool?> delete(DeleteSubscriptionCommand command, String token) async {
+  Future<GetSubscriptionQuery> delete(DeleteSubscriptionCommand command, String token) async {
     var url =
         "${Settings.cobreFacilEndPoint}/subscriptions/${command.subscriptionId}/delete";
     var response = await Dio().delete(url,
@@ -57,12 +55,11 @@ class SubscriptionService implements ISubscriptionService {
             "authorization": "Bearer $token",
           },
         ));
-    var result = response.data;
-    return result == null;
+    return GetSubscriptionQuery.MapFromResponse(response);
   }
 
   @override
-  Future<bool?> cancel(CancelSubscriptionCommand command, String token) async {
+  Future<GetSubscriptionQuery> cancel(CancelSubscriptionCommand command, String token) async {
     var url =
         "${Settings.cobreFacilEndPoint}/subscriptions/${command.subscriptionId}/cancel";
     var response = await Dio().post(url,
@@ -72,8 +69,7 @@ class SubscriptionService implements ISubscriptionService {
             "authorization": "Bearer $token",
           },
         ));
-    var result = response.data;
-    return result == null;
+    return GetSubscriptionQuery.MapFromResponse(response);
   }
 
   @override
@@ -88,8 +84,7 @@ class SubscriptionService implements ISubscriptionService {
             "authorization": "Bearer $token",
           },
         ));
-    var result = response.data;
-    return result == null;
+    return response.data["data"];
   }
 
   @override
@@ -104,31 +99,30 @@ class SubscriptionService implements ISubscriptionService {
             "authorization": "Bearer $token",
           },
         ));
-    var result = response.data;
-    return result == null;
+    return response.data["data"];
   }
 
   @override
-  Future<bool?> finish(FinishSubscriptionCommand command, String token) {
+  Future<GetSubscriptionQuery> finish(FinishSubscriptionCommand command, String token) {
     // TODO: implement finish
     throw UnimplementedError();
   }
 
   @override
-  Future<bool?> pause(PauseSubscriptionCommand command, String token) {
+  Future<GetSubscriptionQuery> pause(PauseSubscriptionCommand command, String token) {
     // TODO: implement pause
     throw UnimplementedError();
   }
 
   @override
-  Future<bool?> reactivate(
+  Future<GetSubscriptionQuery> reactivate(
       ReactivateSubscriptionCommand command, String token) {
     // TODO: implement reactivate
     throw UnimplementedError();
   }
 
   @override
-  Future<bool?> renewed(RenewedSubscriptionCommand command, String token) {
+  Future<GetSubscriptionQuery> renewed(RenewedSubscriptionCommand command, String token) {
     // TODO: implement renewed
     throw UnimplementedError();
   }

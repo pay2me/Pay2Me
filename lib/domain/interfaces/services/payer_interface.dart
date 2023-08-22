@@ -16,7 +16,7 @@ abstract class IPayerService {
     }
   );
 
-  Future<bool?> create(CreatePayerCommand command, String token);
-  Future<bool?> update(UpdatePayerCommand command, String token);
-  Future<bool?> delete(DeletePayerCommand command, String token);
+  Future<GetPayerQuery> create(CreatePayerCommand command, String token);
+  Future<GetPayerQuery> update(UpdatePayerCommand command, String token);
+  Future<GetPayerQuery> delete(DeletePayerCommand command, String token);
 }

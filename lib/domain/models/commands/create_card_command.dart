@@ -1,7 +1,7 @@
 class CreateCardCommand {
   String? cardPayerId;
-  String? cardIsDefault;
-  String? cardName;
+  num? cardIsDefault;
+  String? cardCardHolder;
   String? cardNumber;
   String? cardExpirationYear;
   String? cardExpirationMonth;
@@ -10,7 +10,7 @@ class CreateCardCommand {
   CreateCardCommand({
     this.cardPayerId,
     this.cardIsDefault,
-    this.cardName,
+    this.cardCardHolder,
     this.cardNumber,
     this.cardExpirationYear,
     this.cardExpirationMonth,
@@ -18,9 +18,9 @@ class CreateCardCommand {
   });
 
   Map<String, dynamic> MapToJson() => {
-    'CUSTOMER_id': cardPayerId,
-    'default': cardIsDefault,
-    'name': cardName,
+    'customer_id': cardPayerId,
+    'default': 1,
+    'name': cardCardHolder,
     'number': cardNumber,
     'expiration_year': cardExpirationYear,
     'expiration_month': cardExpirationMonth,

@@ -69,12 +69,9 @@ abstract class _UpdateProductStore with Store, ChangeNotifier {
         Provider.of<MainProductStore>(context, listen: false);
 
     try {
-      bool addComplete =
-          await servicesProductStore.updateProduct(context, productToForm);
-      if (!addComplete)
-        throw const FormatException('Erro na edição do produto');
-      else
-        showMessage(context);
+      String? productUpdatedId = await servicesProductStore.updateProduct(context, productToForm);
+      if (productUpdatedId == null) throw const FormatException('Erro na edição do produto');
+      else showMessage(context);
 
       await mainProductStore.loadProducts(context);
 

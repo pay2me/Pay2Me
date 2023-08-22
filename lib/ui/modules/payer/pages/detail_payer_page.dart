@@ -94,20 +94,6 @@ class DetailPayerPage extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    CustomDetailTile(
-                                      detailName: "Empresa",
-                                      detailData:
-                                          store.payerToDetail.payerCompanyName,
-                                    ),
-                                    CustomDetailTile(
-                                      detailName: "CNPJ",
-                                      detailData: store.payerToDetail.payerCnpj,
-                                    ),
-                                  ],
-                                ),
                               ],
                             ),
                           ],
@@ -125,46 +111,37 @@ class DetailPayerPage extends StatelessWidget {
                                 ),
                               ),
                               const Divider(),
-                              // Row(
-                              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              //   children: [
-                              //     Column(
-                              //       crossAxisAlignment: CrossAxisAlignment.start,
-                              //       children: [
-                              //           CustomDetailTile(
-                              //             detailName: "Serviço",
-                              //             detailData: store.payerToDetail.payerService!.serviceName,
-                              //           ),
-                              //           CustomDetailTile(
-                              //             detailName: "Valor",
-                              //             detailData: "R\$ ${store.payerToDetail.payerService!.serviceValue}",
-                              //           ),
-                              //       ],
-                              //     ),
-                              //     Column(
-                              //       crossAxisAlignment: CrossAxisAlignment.start,
-                              //       children: [
-                              //           CustomDetailTile(
-                              //             detailName: "Frequência de pagamento",
-                              //             detailData: store.payerToDetail.payerService!.serviceFrequency,
-                              //           ),
-                              //           CustomDetailTile(
-                              //             detailName: "Vencimento do plano",
-                              //             detailData: DateUtility().dateToString(store.payerToDetail.payerService!.serviceExpirationPlanDate, format: "dd/MM/yyyy"),
-                              //           ),
-                              //       ],
-                              //     ),
-                              //     Column(
-                              //       crossAxisAlignment: CrossAxisAlignment.start,
-                              //       children: [
-                              //           CustomDetailTile(
-                              //             detailName: "Vencimento da parcela",
-                              //             detailData: DateUtility().dateToString(store.payerToDetail.payerService!.serviceSubscriptionExpirationDate, format: "dd/MM/yyyy"),
-                              //           ),
-                              //       ],
-                              //     ),
-                              //   ],
-                              // ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                        CustomDetailTile(
+                                          detailName: "Serviço",
+                                          detailData: store.productToDetail.productDescription??0,
+                                        ),
+                                        CustomDetailTile(
+                                          detailName: "Valor",
+                                          detailData: "R\$ ${store.productToDetail.productPrice??0}",
+                                        ),
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                        CustomDetailTile(
+                                          detailName: "Frequência de pagamento",
+                                          detailData: "${store.subscriptionToDetail.subscriptionIntervalSize??0} meses",
+                                        ),
+                                        CustomDetailTile(
+                                          detailName: "Vencimento do plano",
+                                          detailData: DateUtility().dateToString(store.subscriptionToDetail.subscriptionFirstDueDate, format: "dd/MM/yyyy")??"",
+                                        ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ),

@@ -14,6 +14,6 @@ abstract class ICardService {
     int? offset,
   });
 
-  Future<bool?> create(CreateCardCommand command, String token);
-  Future<bool?> delete(DeleteCardCommand command, String token);
+  Future<GetCardQuery> create(CreateCardCommand command, String token);
+  Future<GetCardQuery> delete(DeleteCardCommand command, String token);
 }

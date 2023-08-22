@@ -12,10 +12,10 @@ abstract class IProductService {
     }
   );
 
-  Future<bool?> create(CreateProductCommand command, String token);
-  Future<bool?> update(UpdateProductCommand command, String token);
-  Future<bool?> delete(DeleteProductCommand command, String token);
+  Future<GetProductQuery> create(CreateProductCommand command, String token);
+  Future<GetProductQuery> update(UpdateProductCommand command, String token);
+  Future<GetProductQuery> delete(DeleteProductCommand command, String token);
   
-  Future<bool?> active(String serviceId, String token);
-  Future<bool?> inactive(String serviceId, String token);
+  Future<GetProductQuery> active(String serviceId, String token);
+  Future<GetProductQuery> inactive(String serviceId, String token);
 }

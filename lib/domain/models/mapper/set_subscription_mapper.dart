@@ -22,7 +22,7 @@ class SetSubscriptionMapper {
   DateTime? subscriptionReactivateAt;
   String? subscriptionReference;
   String? subscriptionSequencialNumber;
-  String? subscriptionSettings;
+  SubscriptionSettings? subscriptionSettings;
   String? subscriptionStatus;
   DateTime? subscriptionCreatedAt;
   DateTime? subscriptionUpdatedAt;

@@ -49,6 +49,22 @@ mixin _$CreatePayerStore on _CreatePayerStore, Store {
     });
   }
 
+  late final _$productsToDropdownAtom =
+      Atom(name: '_CreatePayerStore.productsToDropdown', context: context);
+
+  @override
+  List<DropdownMenuItem<dynamic>> get productsToDropdown {
+    _$productsToDropdownAtom.reportRead();
+    return super.productsToDropdown;
+  }
+
+  @override
+  set productsToDropdown(List<DropdownMenuItem<dynamic>> value) {
+    _$productsToDropdownAtom.reportWrite(value, super.productsToDropdown, () {
+      super.productsToDropdown = value;
+    });
+  }
+
   late final _$payerToFormAtom =
       Atom(name: '_CreatePayerStore.payerToForm', context: context);
 
@@ -97,20 +113,29 @@ mixin _$CreatePayerStore on _CreatePayerStore, Store {
     });
   }
 
-  late final _$serviceToFormAtom =
-      Atom(name: '_CreatePayerStore.serviceToForm', context: context);
+  late final _$productToFormAtom =
+      Atom(name: '_CreatePayerStore.productToForm', context: context);
 
   @override
-  SetProductMapper get serviceToForm {
-    _$serviceToFormAtom.reportRead();
-    return super.serviceToForm;
+  SetProductMapper get productToForm {
+    _$productToFormAtom.reportRead();
+    return super.productToForm;
   }
 
   @override
-  set serviceToForm(SetProductMapper value) {
-    _$serviceToFormAtom.reportWrite(value, super.serviceToForm, () {
-      super.serviceToForm = value;
+  set productToForm(SetProductMapper value) {
+    _$productToFormAtom.reportWrite(value, super.productToForm, () {
+      super.productToForm = value;
     });
+  }
+
+  late final _$loadCreateClienteAsyncAction =
+      AsyncAction('_CreatePayerStore.loadCreateCliente', context: context);
+
+  @override
+  Future<void> loadCreateCliente(BuildContext context) {
+    return _$loadCreateClienteAsyncAction
+        .run(() => super.loadCreateCliente(context));
   }
 
   late final _$submitCreateFormAsyncAction =
@@ -142,10 +167,11 @@ mixin _$CreatePayerStore on _CreatePayerStore, Store {
     return '''
 isLoading: ${isLoading},
 formKey: ${formKey},
+productsToDropdown: ${productsToDropdown},
 payerToForm: ${payerToForm},
 cardToForm: ${cardToForm},
 subscriptionToForm: ${subscriptionToForm},
-serviceToForm: ${serviceToForm},
+productToForm: ${productToForm},
 formIsValid: ${formIsValid}
     ''';
   }

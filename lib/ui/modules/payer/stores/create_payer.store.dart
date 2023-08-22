@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pay_2_me/domain/models/export_models.dart';
+import 'package:pay_2_me/ui/modules/export_stores.dart';
 import 'package:provider/provider.dart';
-import 'package:pay_2_me/ui/modules/payer/export_payer.dart';
 import 'package:pay_2_me/ui/shared/functions/formUtility.dart';
 
 part 'create_payer.store.g.dart';
@@ -17,6 +17,9 @@ abstract class _CreatePayerStore with Store, ChangeNotifier {
   var formKey = GlobalKey<FormState>();
 
   @observable
+  List<DropdownMenuItem> productsToDropdown = [];
+
+  @observable
   SetPayerMapper payerToForm = SetPayerMapper(
     payerAddress: SetAddressMapper(),
   );
@@ -25,7 +28,7 @@ abstract class _CreatePayerStore with Store, ChangeNotifier {
   @observable
   SetSubscriptionMapper subscriptionToForm = SetSubscriptionMapper();
   @observable
-  SetProductMapper serviceToForm = SetProductMapper();
+  SetProductMapper productToForm = SetProductMapper();
 
   Map<String, bool> validityOfFields = ObservableMap<String, bool>();
 
@@ -59,6 +62,22 @@ abstract class _CreatePayerStore with Store, ChangeNotifier {
   }
 
   @action
+  Future<void> loadCreateCliente(BuildContext context) async {
+    isLoading = true;
+
+    List<SetProductMapper> products = await Provider.of<ServicesProductStore>(context, listen: false).searchProducts(context);
+
+    productsToDropdown = products.map(
+      (product) => DropdownMenuItem(
+        child: Text(product.productDescription??""), 
+        value: product,
+      )
+    ).toList();
+    
+    isLoading = false;
+  }
+
+  @action
   Future<void> submitCreateForm(BuildContext context) async {
     isLoading = true;
     
@@ -71,11 +90,16 @@ abstract class _CreatePayerStore with Store, ChangeNotifier {
     formKey.currentState?.save();
 
     final servicesPayerStore = Provider.of<ServicesPayerStore>(context, listen: false);
+    final servicesCardStore = Provider.of<ServicesCardStore>(context, listen: false);
+    final servicesSubscriptionStore = Provider.of<ServicesSubscriptionStore>(context, listen: false);
     final mainPayerStore = Provider.of<MainPayerStore>(context, listen: false);
 
     try {
-      bool addComplete = await servicesPayerStore.createPayer(context, payerToForm);
-      if(!addComplete) throw const FormatException('Erro na adição do área');
+      String? payerCreatedId = await servicesPayerStore.createPayer(context, payerToForm);
+      if(payerCreatedId != null) await servicesCardStore.createCard(context, cardToForm);
+      if(payerCreatedId != null) await servicesSubscriptionStore.createSubscription(context, subscriptionToForm);
+      
+      if(payerCreatedId == null) throw const FormatException('Erro na adição do pagador');
       else showMessage(context);
 
       await mainPayerStore.loadPayers(context);

@@ -49,6 +49,22 @@ mixin _$UpdatePayerStore on _UpdatePayerStore, Store {
     });
   }
 
+  late final _$productsToDropdownAtom =
+      Atom(name: '_UpdatePayerStore.productsToDropdown', context: context);
+
+  @override
+  List<DropdownMenuItem<dynamic>> get productsToDropdown {
+    _$productsToDropdownAtom.reportRead();
+    return super.productsToDropdown;
+  }
+
+  @override
+  set productsToDropdown(List<DropdownMenuItem<dynamic>> value) {
+    _$productsToDropdownAtom.reportWrite(value, super.productsToDropdown, () {
+      super.productsToDropdown = value;
+    });
+  }
+
   late final _$payerToFormAtom =
       Atom(name: '_UpdatePayerStore.payerToForm', context: context);
 
@@ -62,22 +78,6 @@ mixin _$UpdatePayerStore on _UpdatePayerStore, Store {
   set payerToForm(SetPayerMapper value) {
     _$payerToFormAtom.reportWrite(value, super.payerToForm, () {
       super.payerToForm = value;
-    });
-  }
-
-  late final _$cardToFormAtom =
-      Atom(name: '_UpdatePayerStore.cardToForm', context: context);
-
-  @override
-  SetCardMapper get cardToForm {
-    _$cardToFormAtom.reportRead();
-    return super.cardToForm;
-  }
-
-  @override
-  set cardToForm(SetCardMapper value) {
-    _$cardToFormAtom.reportWrite(value, super.cardToForm, () {
-      super.cardToForm = value;
     });
   }
 
@@ -95,6 +95,31 @@ mixin _$UpdatePayerStore on _UpdatePayerStore, Store {
     _$subscriptionToFormAtom.reportWrite(value, super.subscriptionToForm, () {
       super.subscriptionToForm = value;
     });
+  }
+
+  late final _$productToFormAtom =
+      Atom(name: '_UpdatePayerStore.productToForm', context: context);
+
+  @override
+  SetProductMapper get productToForm {
+    _$productToFormAtom.reportRead();
+    return super.productToForm;
+  }
+
+  @override
+  set productToForm(SetProductMapper value) {
+    _$productToFormAtom.reportWrite(value, super.productToForm, () {
+      super.productToForm = value;
+    });
+  }
+
+  late final _$loadUpdateClienteAsyncAction =
+      AsyncAction('_UpdatePayerStore.loadUpdateCliente', context: context);
+
+  @override
+  Future<void> loadUpdateCliente(BuildContext context) {
+    return _$loadUpdateClienteAsyncAction
+        .run(() => super.loadUpdateCliente(context));
   }
 
   late final _$submitUpdateFormAsyncAction =
@@ -126,9 +151,10 @@ mixin _$UpdatePayerStore on _UpdatePayerStore, Store {
     return '''
 isLoading: ${isLoading},
 formKey: ${formKey},
+productsToDropdown: ${productsToDropdown},
 payerToForm: ${payerToForm},
-cardToForm: ${cardToForm},
 subscriptionToForm: ${subscriptionToForm},
+productToForm: ${productToForm},
 formIsValid: ${formIsValid}
     ''';
   }

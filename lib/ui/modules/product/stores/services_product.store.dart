@@ -42,8 +42,7 @@ abstract class _ServicesProductStore with Store, ChangeNotifier {
 
   // CRUD
 
-  Future<bool> createProduct(
-      BuildContext context, SetProductMapper product) async {
+  Future<String?> createProduct(BuildContext context, SetProductMapper product) async {
     String token = Provider.of<MainIndexStore>(context, listen: false)
             .storegeAuthData
             .authToken ??
@@ -58,8 +57,7 @@ abstract class _ServicesProductStore with Store, ChangeNotifier {
     return (await productBusiness.create(createProductCommand, token));
   }
 
-  Future<bool> updateProduct(
-      BuildContext context, SetProductMapper product) async {
+  Future<String?> updateProduct(BuildContext context, SetProductMapper product) async {
     String token = Provider.of<MainIndexStore>(context, listen: false)
             .storegeAuthData
             .authToken ??
@@ -76,8 +74,7 @@ abstract class _ServicesProductStore with Store, ChangeNotifier {
     return (await productBusiness.update(editProductCommand, token));
   }
 
-  Future<bool> deleteProduct(
-      BuildContext context, SetProductMapper product) async {
+  Future<String?> deleteProduct(BuildContext context, SetProductMapper product) async {
     String token = Provider.of<MainIndexStore>(context, listen: false)
             .storegeAuthData
             .authToken ??

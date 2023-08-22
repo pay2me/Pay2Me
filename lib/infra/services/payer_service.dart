@@ -61,7 +61,7 @@ class PayerService implements IPayerService {
   }
 
   @override
-  Future<bool?> create(CreatePayerCommand command, String token) async {
+  Future<GetPayerQuery> create(CreatePayerCommand command, String token) async {
     var url = "${Settings.cobreFacilEndPoint}/customers";
     var response = await Dio().post(url,
         data: command.MapToJson(),
@@ -70,12 +70,11 @@ class PayerService implements IPayerService {
             "authorization": "Bearer $token",
           },
         ));
-    var result = response.data;
-    return result != null;
+    return GetPayerQuery.MapFromResponse(response);
   }
 
   @override
-  Future<bool?> update(UpdatePayerCommand command, String token) async {
+  Future<GetPayerQuery> update(UpdatePayerCommand command, String token) async {
     var url = "${Settings.cobreFacilEndPoint}/customers/${command.payerId}";
     var response = await Dio().put(url,
         data: command.MapToJson(),
@@ -84,12 +83,11 @@ class PayerService implements IPayerService {
             "authorization": "Bearer $token",
           },
         ));
-    var result = response.data;
-    return result != null;
+    return GetPayerQuery.MapFromResponse(response);
   }
 
   @override
-  Future<bool?> delete(DeletePayerCommand command, String token) async {
+  Future<GetPayerQuery> delete(DeletePayerCommand command, String token) async {
     var url = "${Settings.cobreFacilEndPoint}/customers/${command.payerId}";
     var response = await Dio().delete(url,
         data: command.MapToJson(),
@@ -98,7 +96,6 @@ class PayerService implements IPayerService {
             "authorization": "Bearer $token",
           },
         ));
-    var result = response.data;
-    return result == null;
+    return GetPayerQuery.MapFromResponse(response);
   }
 }

@@ -25,7 +25,7 @@ class ProductBusiness {
         throw const FormatException('Dados formularios invalidos.');
       }
 
-      return result.payers;
+      return result.products;
     } on FormatException catch (fe) {
       print(fe);
       return null;
@@ -35,60 +35,66 @@ class ProductBusiness {
     }
   }
 
-  Future<bool> create(CreateProductCommand command, String token) async {
+  Future<String?> create(CreateProductCommand command, String token) async {
     try {
       var service = ProductService();
       var result = await service.create(command, token);
 
-      if (result == null) {
-        throw const FormatException('Dados formularios invalidos.');
+      if(result.code != 200){
+        throw const FormatException('Falha na criação');
       }
 
-      return true;
-    } on FormatException catch (fe) {
+      return result.products![0].productId;
+    }
+    on FormatException catch(fe) {
       print(fe);
-      return false;
-    } on Exception catch (e) {
+      return null;
+    }
+    on Exception catch(e) {
       print(e);
-      return false;
+      return null;
     }
   }
 
-  Future<bool> update(UpdateProductCommand command, String token) async {
+  Future<String?> update(UpdateProductCommand command, String token) async {
     try {
       var service = ProductService();
       var result = await service.update(command, token);
 
-      if (result == null) {
-        throw const FormatException('Dados formularios invalidos.');
+      if(result.code != 200){
+        throw const FormatException('Falha na criação');
       }
 
-      return true;
-    } on FormatException catch (fe) {
+      return result.products![0].productId;
+    }
+    on FormatException catch(fe) {
       print(fe);
-      return false;
-    } on Exception catch (e) {
+      return null;
+    }
+    on Exception catch(e) {
       print(e);
-      return false;
+      return null;
     }
   }
 
-  Future<bool> delete(DeleteProductCommand command, String token) async {
+  Future<String?> delete(DeleteProductCommand command, String token) async {
     try {
       var service = ProductService();
       var result = await service.delete(command, token);
 
-      if (result == null) {
-        throw const FormatException('Dados formularios invalidos.');
+      if(result.code != 200){
+        throw const FormatException('Falha na criação');
       }
 
-      return result;
-    } on FormatException catch (fe) {
+      return result.products![0].productId;
+    }
+    on FormatException catch(fe) {
       print(fe);
-      return false;
-    } on Exception catch (e) {
+      return null;
+    }
+    on Exception catch(e) {
       print(e);
-      return false;
+      return null;
     }
   }
 }

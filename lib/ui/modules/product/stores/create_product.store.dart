@@ -69,12 +69,9 @@ abstract class _CreateProductStore with Store, ChangeNotifier {
         Provider.of<MainProductStore>(context, listen: false);
 
     try {
-      bool addComplete =
-          await servicesProductStore.createProduct(context, productToForm);
-      if (!addComplete)
-        throw const FormatException('Erro na adição do produto');
-      else
-        showMessage(context);
+      String? productCreatedId = await servicesProductStore.createProduct(context, productToForm);
+      if (productCreatedId == null) throw const FormatException('Erro na adição do produto');
+      else showMessage(context);
 
       await mainProductStore.loadProducts(context);
 
