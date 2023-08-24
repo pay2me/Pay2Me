@@ -10,15 +10,18 @@ class FormUtility {
     "Estado": "Estado é obrigatório",
     "Bairro": "Bairro é obrigatório",
     "CEP": "CEP é obrigatório",
+    "Descrição do endereço": "Descrição do endereço do endereço é obrigatório",
+    "Rua": "Rua é obrigatório",
+    "Número da casa": "Número da casa é obrigatório e deve ser um número válido",
     "Número do cartão": "Número do cartão é obrigatório",
     "Nome no cartão": "Nome no cartão é obrigatório",
-    "Data de vencimento": "Data de vencimento é obrigatório",
-    "CVV": "CVV é obrigatório",
+    "Mês de vencimento": "Mês de vencimento é obrigatório e deve ser um número válido",
+    "Ano de vencimento": "Ano de vencimento é obrigatório e deve ser um número válido",
+    "CVV": "CVV é obrigatório e deve ser um número válido",
     "Serviço": "Serviço é obrigatório",
-    "Frequência de pagamento": "Frequência de pagamento é obrigatório",
-    "Valor": "Valor é obrigatório",
-    "Vencimento": "Vencimento é obrigatório",
-    "Vencimento do plano": "Vencimento do plano é obrigatório",
+    "Frequência de pagamento": "Frequência de pagamento é obrigatório e deve ser um número válido.\nExemplo: 6 (a cobraça será semestral)",
+    "Valor": "Valor é obrigatório e deve ser um número válido",
+    "Vencimento da primerira parcela": "Vencimento da primerira parcela é obrigatório",
   };
 
   bool stringIsNotEmpty(String? value) => (value??"").isNotEmpty;
@@ -58,31 +61,40 @@ class FormUtility {
       case "CEP":
         isValid = stringIsNotEmpty(value);
         break;
+      case "Descrição do endereço":
+        isValid = stringIsNotEmpty(value);
+        break;
+      case "Rua":
+        isValid = stringIsNotEmpty(value);
+        break;
+      case "Número da casa":
+        isValid = stringIsNotEmpty(value) && isNumberParsed(value);
+        break;
       case "Número do cartão":
         isValid = stringIsNotEmpty(value);
         break;
       case "Nome no cartão":
         isValid = stringIsNotEmpty(value);
         break;
-      case "Data de vencimento":
-        isValid = stringIsNotEmpty(value);
+      case "Mês de vencimento":
+        isValid = stringIsNotEmpty(value) && isNumberParsed(value);
+        break;
+      case "Ano de vencimento":
+        isValid = stringIsNotEmpty(value) && isNumberParsed(value);
         break;
       case "CVV":
-        isValid = stringIsNotEmpty(value);
+        isValid = stringIsNotEmpty(value) && isNumberParsed(value);
         break;
       case "Serviço":
         isValid = stringIsNotEmpty(value);
         break;
       case "Frequência de pagamento":
-        isValid = stringIsNotEmpty(value);
+        isValid = stringIsNotEmpty(value) && isNumberParsed(value);
         break;
       case "Valor":
-        isValid = stringIsNotEmpty(value);
+        isValid = stringIsNotEmpty(value) && isNumberParsed(value);
         break;
-      case "Vencimento":
-        isValid = stringIsNotEmpty(value);
-        break;
-      case "Vencimento do plano":
+      case "Vencimento da primerira parcela":
         isValid = stringIsNotEmpty(value);
         break;
       default:

@@ -6,12 +6,17 @@ class SearchBarWidget extends StatelessWidget {
   final String labelText;
   final String? hintText;
   final List<Map<String, dynamic>>? listToFilter;
+  final TextEditingController searchController;
+  final FocusNode searchTextNode;
   final void Function(String) onChangedSearch;
-  final void Function(BuildContext context, {Ordering? ordering})? onLoadFromFilter;
+  final void Function(BuildContext context, {Ordering? ordering})?
+      onLoadFromFilter;
 
   SearchBarWidget({
     required this.labelText,
     required this.onChangedSearch,
+    required this.searchController,
+    required this.searchTextNode,
     this.hintText,
     this.listToFilter,
     this.onLoadFromFilter,
@@ -39,9 +44,9 @@ class SearchBarWidget extends StatelessWidget {
           children: [
             Expanded(
               child: TextField(
-                focusNode: store.textNode,
+                focusNode: searchTextNode,
                 onChanged: onChangedSearch,
-                controller: store.controller,
+                controller: searchController,
                 decoration: InputDecoration(
                   labelText: labelText,
                   labelStyle: TextStyle(
@@ -78,8 +83,12 @@ class SearchBarWidget extends StatelessWidget {
                     endIndent: 10,
                   ),
                   IconButton(
-                    icon: const Icon(Icons.filter_list_outlined),
-                    onPressed: () async => await store.showFilters(context, listToFilter!, onLoadFromFilter!),
+                    icon: Icon(Icons.filter_list_outlined),
+                    onPressed: () async => await store.showFilters(
+                      context,
+                      listToFilter!,
+                      onLoadFromFilter!,
+                    ),
                   ),
                   VerticalDivider(
                     color: Theme.of(context).colorScheme.secondary,
@@ -88,8 +97,14 @@ class SearchBarWidget extends StatelessWidget {
                     endIndent: 10,
                   ),
                   IconButton(
-                    onPressed: () => store.clearSearch(context, onChangedSearch, onLoadFromFilter??((context, {Ordering? ordering}){})),
-                    icon: const Icon(Icons.close_outlined),
+                    onPressed: () => store.clearSearch(
+                      context,
+                      searchController,
+                      searchTextNode,
+                      onChangedSearch,
+                      onLoadFromFilter ?? ((context, {Ordering? ordering}) {}),
+                    ),
+                    icon: Icon(Icons.close_outlined),
                   ),
                 ],
               ),

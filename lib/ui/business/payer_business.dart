@@ -3,13 +3,37 @@ import 'package:pay_2_me/infra/services/export_services.dart';
 
 class PayerBusiness {
 
-  Future<List<SetPayerMapper>?> getAll(String token) async {
+  Future<List<SetPayerMapper>?> search(
+    String token, 
+    {
+      String? cpf, 
+      String? cnpj, 
+      String? email, 
+      String? name,
+      String? companyName,
+      String? sortBy,
+      String? orderBy,
+      int? limit,
+      int? offset,
+    }
+  ) async {
     try {
       var service = PayerService();
-      var result = await service.getAll(token);
+      var result = await service.search(
+        token,
+        cpf: cpf,
+        cnpj: cnpj,
+        email: email,
+        name: name,
+        companyName: companyName,
+        sortBy: sortBy,
+        orderBy: orderBy,
+        limit: limit,
+        offset: offset,
+      );
 
-      if(result.code == 406){
-        throw const FormatException('Dados formularios invalidos.');
+      if(result.code != 200){
+        throw const FormatException('Falha na busca');
       }
 
       return result.payers;
@@ -24,66 +48,66 @@ class PayerBusiness {
     }
   }
 
-  Future<bool> insert(CreatePayerCommand command, String token) async {
+  Future<String?> create(CreatePayerCommand command, String token) async {
     try {
       var service = PayerService();
-      var result = await service.insert(command, token);
+      var result = await service.create(command, token);
 
-      if(result == null){
-        throw const FormatException('Dados formularios invalidos.');
+      if(result.code != 200){
+        throw const FormatException('Falha na criação');
       }
 
-      return true;
+      return result.payers![0].payerId;
     }
     on FormatException catch(fe) {
       print(fe);
-      return false;
+      return null;
     }
     on Exception catch(e) {
       print(e);
-      return false;
+      return null;
     }
   }
 
-  Future<bool> update(UpdatePayerCommand command, String token) async {
+  Future<String?> update(UpdatePayerCommand command, String token) async {
     try {
       var service = PayerService();
       var result = await service.update(command, token);
 
-      if(result == null){
-        throw const FormatException('Dados formularios invalidos.');
+      if(result.code != 200){
+        throw const FormatException('Falha na criação');
       }
 
-      return true;
+      return result.payers![0].payerId;
     }
     on FormatException catch(fe) {
       print(fe);
-      return false;
+      return null;
     }
     on Exception catch(e) {
       print(e);
-      return false;
+      return null;
     }
   }
 
-  Future<bool> delete(DeletePayerCommand command, String token) async {
+  Future<String?> delete(DeletePayerCommand command, String token) async {
     try {
       var service = PayerService();
       var result = await service.delete(command, token);
 
-      if(result == null){
-        throw const FormatException('Dados formularios invalidos.');
+      if(result.code != 200){
+        throw const FormatException('Falha na criação');
       }
 
-      return result;
+      return result.payers![0].payerId;
     }
     on FormatException catch(fe) {
       print(fe);
-      return false;
+      return null;
     }
     on Exception catch(e) {
       print(e);
-      return false;
+      return null;
     }
   }
 }

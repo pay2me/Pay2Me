@@ -1,8 +1,19 @@
 import 'package:pay_2_me/domain/models/export_models.dart';
 
 abstract class ICardService {
-  Future<GetCardQuery> getAll(String token);
-  Future<int?> insert(CreateCardCommand command, String token);
-  Future<int?> update(UpdateCardCommand command, String token);
-  Future<int?> delete(DeleteCardCommand command, String token);
+  Future<GetCardQuery> search(
+    String token, {
+    String? payerId,
+    String? brand,
+    String? expiration,
+    String? expirationStart,
+    String? expirationEnd,
+    String? sortBy,
+    String? orderBy,
+    int? limit,
+    int? offset,
+  });
+
+  Future<GetCardQuery> create(CreateCardCommand command, String token);
+  Future<GetCardQuery> delete(DeleteCardCommand command, String token);
 }

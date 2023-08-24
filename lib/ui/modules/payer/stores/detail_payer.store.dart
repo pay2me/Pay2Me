@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pay_2_me/domain/models/export_models.dart';
+import 'package:pay_2_me/ui/modules/export_modules.dart';
 import 'package:provider/provider.dart';
 import 'package:pay_2_me/ui/modules/payer/export_payer.dart';
 
@@ -16,7 +17,16 @@ abstract class _DetailPayerStore with Store, ChangeNotifier {
   List<String> permissions = [];
 
   @observable
-  SetPayerMapper payerToDetail = SetPayerMapper();
+  SetPayerMapper payerToDetail = SetPayerMapper(
+    payerAddress: SetAddressMapper(),
+  );
+  @observable
+  SetCardMapper cardToDetail = SetCardMapper();
+  @observable
+  SetSubscriptionMapper subscriptionToDetail = SetSubscriptionMapper();
+  @observable
+  SetProductMapper productToDetail = SetProductMapper();
+
 
   @observable
   bool changeEnable = false;
@@ -26,6 +36,9 @@ abstract class _DetailPayerStore with Store, ChangeNotifier {
     isLoading = true;
 
     payerToDetail = payer;
+
+    // cardToDetail = (await Provider.of<ServicesCardStore>(context, listen: false).searchCards(context, payerId: payer.payerId))[0];
+    // subscriptionToDetail = (await Provider.of<ServicesSubscriptionStore>(context, listen: false).searchSubscriptions(context))[0];
     
     isLoading = false;
   }
@@ -53,10 +66,10 @@ abstract class _DetailPayerStore with Store, ChangeNotifier {
     if(isDelete) {
       isLoading = true;
 
-      bool deleteComplete = await Provider.of<ServicesPayerStore>(context, listen: false).deletePayer(context, payer);
-      showMessage(context, deleteComplete);
+      String? deleteComplete = await Provider.of<ServicesPayerStore>(context, listen: false).deletePayer(context, payer);
+      showMessage(context, (deleteComplete != null));
       
-      if(deleteComplete) {
+      if(deleteComplete != null) {
         await Provider.of<MainPayerStore>(context, listen:false).loadPayers(context);
         Navigator.of(context).pop();
       }

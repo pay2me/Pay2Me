@@ -6,6 +6,6 @@ class DeleteCardCommand {
   });
 
   Map<String, dynamic> MapToJson() => {
-    'cardId': cardId,
+    'id': cardId,
   };
 }

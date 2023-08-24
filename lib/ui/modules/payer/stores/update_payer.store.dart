@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pay_2_me/domain/models/export_models.dart';
-import 'package:pay_2_me/domain/models/mapper/set_service_mapper.dart';
+import 'package:pay_2_me/ui/modules/export_stores.dart';
 import 'package:provider/provider.dart';
-import 'package:pay_2_me/ui/modules/payer/export_payer.dart';
 import 'package:pay_2_me/ui/shared/functions/formUtility.dart';
 
 part 'update_payer.store.g.dart';
@@ -18,11 +17,16 @@ abstract class _UpdatePayerStore with Store, ChangeNotifier {
   var formKey = GlobalKey<FormState>();
 
   @observable
+  List<DropdownMenuItem> productsToDropdown = [];
+
+  @observable
   SetPayerMapper payerToForm = SetPayerMapper(
     payerAddress: SetAddressMapper(),
-    payerCard: SetCardMapper(),
-    payerService: SetServiceMapper(),
   );
+  @observable
+  SetSubscriptionMapper subscriptionToForm = SetSubscriptionMapper();
+  @observable
+  SetProductMapper productToForm = SetProductMapper();
 
   Map<String, bool> validityOfFields = ObservableMap<String, bool>();
 
@@ -56,6 +60,22 @@ abstract class _UpdatePayerStore with Store, ChangeNotifier {
   }
 
   @action
+  Future<void> loadUpdateCliente(BuildContext context) async {
+    isLoading = true;
+
+    List<SetProductMapper> products = await Provider.of<ServicesProductStore>(context, listen: false).searchProducts(context);
+
+    productsToDropdown = products.map(
+      (product) => DropdownMenuItem(
+        child: Text(product.productDescription??""), 
+        value: product,
+      )
+    ).toList();
+    
+    isLoading = false;
+  }
+
+  @action
   Future<void> submitUpdateForm(BuildContext context) async {
     isLoading = true;
     
@@ -68,11 +88,14 @@ abstract class _UpdatePayerStore with Store, ChangeNotifier {
     formKey.currentState?.save();
 
     final servicesPayerStore = Provider.of<ServicesPayerStore>(context, listen: false);
+    final servicesSubscriptionStore = Provider.of<ServicesSubscriptionStore>(context, listen: false);
     final mainPayerStore = Provider.of<MainPayerStore>(context, listen: false);
 
     try {
-      bool addComplete = await servicesPayerStore.updatePayer(context, payerToForm);
-      if(!addComplete) throw const FormatException('Erro na edição do área');
+      String? payerUpdatedId = await servicesPayerStore.updatePayer(context, payerToForm);
+      if(payerUpdatedId != null) await servicesSubscriptionStore.updateSubscription(context, subscriptionToForm);
+      
+      if(payerUpdatedId == null) throw const FormatException('Erro na adição do pagador');
       else showMessage(context);
 
       await mainPayerStore.loadPayers(context);
@@ -103,7 +126,7 @@ abstract class _UpdatePayerStore with Store, ChangeNotifier {
         const SnackBar(
           behavior: SnackBarBehavior.floating,
           content: Text(
-            "Pagador editado com sucesso!",
+            "Pagador cadastrado com sucesso!",
           ),
         ),
       );

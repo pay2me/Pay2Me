@@ -20,8 +20,9 @@ class IndexPage extends StatelessWidget {
               : PageView(
                   controller: _pageController,
                   physics: const NeverScrollableScrollPhysics(),
-                  children: const [
-                    PayerTab(),
+                  children: [
+                    PayerTab(_pageController),
+                    ProductTab(_pageController),
                   ],
                 ),
     );

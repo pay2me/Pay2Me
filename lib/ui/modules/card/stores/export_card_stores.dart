@@ -1,0 +1,1 @@
+export 'package:pay_2_me/ui/modules/card/stores/services_card.store.dart';

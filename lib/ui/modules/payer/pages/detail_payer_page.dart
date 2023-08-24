@@ -14,7 +14,8 @@ class DetailPayerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final store = Provider.of<DetailPayerStore>(context, listen: false);
 
-    final SetPayerMapper payer = ModalRoute.of(context)!.settings.arguments as SetPayerMapper;
+    final SetPayerMapper payer =
+        ModalRoute.of(context)!.settings.arguments as SetPayerMapper;
 
     return FutureBuilder(
       future: store.loadDataPayer(context, payer),
@@ -23,27 +24,28 @@ class DetailPayerPage extends StatelessWidget {
           appBar: AppBar(
             title: const Text("Pagador"),
             actions: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.delete_outline,
-                    size: 30,
-                  ),
-                  onPressed: () => store.confirmAndDeletePayer(context, payer),
+              IconButton(
+                icon: const Icon(
+                  Icons.delete_outline,
+                  size: 30,
                 ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.edit,
-                    size: 30,
-                  ),
-                  onPressed: () => Navigator.of(context).pushNamed(
-                    AppRoutes.EDITPAYERPAGE,
-                    arguments: payer,
-                  ),
+                onPressed: () => store.confirmAndDeletePayer(context, payer),
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.edit,
+                  size: 30,
                 ),
+                onPressed: () => Navigator.of(context).pushNamed(
+                  AppRoutes.EDITPAYERPAGE,
+                  arguments: payer,
+                ),
+              ),
             ],
             iconTheme: Theme.of(context).iconTheme,
           ),
-          body: snapshot.connectionState == ConnectionState.waiting || store.isLoading
+          body: snapshot.connectionState == ConnectionState.waiting ||
+                  store.isLoading
               ? const Center(child: CircularProgressIndicator())
               : SingleChildScrollView(
                   child: Padding(
@@ -60,12 +62,13 @@ class DetailPayerPage extends StatelessWidget {
                                 fontSize: 25,
                               ),
                             ),
-                            const Divider(),Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                            const Divider(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
                                     CustomDetailTile(
                                       detailName: "Nome",
                                       detailData: store.payerToDetail.payerName,
@@ -74,31 +77,20 @@ class DetailPayerPage extends StatelessWidget {
                                       detailName: "CPF",
                                       detailData: store.payerToDetail.payerCpf,
                                     ),
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                                  ],
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
                                     CustomDetailTile(
                                       detailName: "Cidade",
-                                      detailData: store.payerToDetail.payerAddress!.addressCity,
+                                      detailData: store.payerToDetail
+                                          .payerAddress!.addressCity,
                                     ),
                                     CustomDetailTile(
                                       detailName: "Estado",
-                                      detailData: store.payerToDetail.payerAddress!.addressState,
-                                    ),
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                    CustomDetailTile(
-                                      detailName: "Empresa",
-                                      detailData: store.payerToDetail.payerCompanyName,
-                                    ),
-                                    CustomDetailTile(
-                                      detailName: "CNPJ",
-                                      detailData: store.payerToDetail.payerCnpj,
+                                      detailData: store.payerToDetail
+                                          .payerAddress!.addressState,
                                     ),
                                   ],
                                 ),
@@ -127,11 +119,11 @@ class DetailPayerPage extends StatelessWidget {
                                     children: [
                                         CustomDetailTile(
                                           detailName: "Serviço",
-                                          detailData: store.payerToDetail.payerService!.serviceName,
+                                          detailData: store.productToDetail.productDescription??0,
                                         ),
                                         CustomDetailTile(
                                           detailName: "Valor",
-                                          detailData: "R\$ ${store.payerToDetail.payerService!.serviceValue}",
+                                          detailData: "R\$ ${store.productToDetail.productPrice??0}",
                                         ),
                                     ],
                                   ),
@@ -140,20 +132,11 @@ class DetailPayerPage extends StatelessWidget {
                                     children: [
                                         CustomDetailTile(
                                           detailName: "Frequência de pagamento",
-                                          detailData: store.payerToDetail.payerService!.serviceFrequency,
+                                          detailData: "${store.subscriptionToDetail.subscriptionIntervalSize??0} meses",
                                         ),
                                         CustomDetailTile(
                                           detailName: "Vencimento do plano",
-                                          detailData: DateUtility().dateToString(store.payerToDetail.payerService!.serviceExpirationPlanDate, format: "dd/MM/yyyy"),
-                                        ),
-                                    ],
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                        CustomDetailTile(
-                                          detailName: "Vencimento da parcela",
-                                          detailData: DateUtility().dateToString(store.payerToDetail.payerService!.serviceSubscriptionExpirationDate, format: "dd/MM/yyyy"),
+                                          detailData: DateUtility().dateToString(store.subscriptionToDetail.subscriptionFirstDueDate, format: "dd/MM/yyyy")??"",
                                         ),
                                     ],
                                   ),

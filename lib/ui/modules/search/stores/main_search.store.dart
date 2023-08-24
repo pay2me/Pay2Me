@@ -15,12 +15,6 @@ abstract class _MainSearchStore with Store, ChangeNotifier {
   @observable
   Ordering? selectedOdering;
 
-  @observable
-  TextEditingController controller = TextEditingController();
-
-  @observable
-  FocusNode textNode = FocusNode();
-
   @action
   Future<void> showFilters(BuildContext context, List<Map<String, dynamic>> listToFilter, void Function(BuildContext context, {Ordering? ordering}) onLoadFromFilter) async {
     selectedOdering = selectedOdering??Provider.of<ServicesSearchStore>(context, listen: false).alphabeticalOrdering;
@@ -58,14 +52,20 @@ abstract class _MainSearchStore with Store, ChangeNotifier {
   }
 
   @action
-  void clearSearch(BuildContext context, void Function(String) onChangedSearch, void Function(BuildContext context, {Ordering? ordering}) onLoadFromFilter) {
+  void clearSearch(
+    BuildContext context,
+    TextEditingController searchController, 
+    FocusNode searchTextNode, 
+    void Function(String) onChangedSearch, 
+    void Function(BuildContext context, {Ordering? ordering}) onLoadFromFilter
+  ) {
     onChangedSearch("");
-    controller.text = "";
+    searchController.text = "";
     onLoadFromFilter(context);
     currentOdering = null;
     selectedOdering = null;
 
-    if (textNode.hasPrimaryFocus || MediaQuery.of(context).viewInsets.bottom > 0) {
+    if (searchTextNode.hasPrimaryFocus || MediaQuery.of(context).viewInsets.bottom > 0) {
       FocusScope.of(context).requestFocus(FocusNode());
     }
 

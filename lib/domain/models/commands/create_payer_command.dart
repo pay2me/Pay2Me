@@ -1,25 +1,30 @@
 import 'package:pay_2_me/domain/models/export_models.dart';
 
 class CreatePayerCommand {
+  String? payerCnpj;
+  String? payerCompanyName;
+  String? payerCpf;
   String? payerName;
   String? payerPhone;
-  String? payerCpf;
+  String? payerEmail;
+  String? payerFullName;
   SetAddressMapper? payerAddress;
-  SetCardMapper? payerCard;
 
   CreatePayerCommand({
+    this.payerCpf,
     this.payerName,
     this.payerPhone,
-    this.payerCpf,
+    this.payerEmail,
+    this.payerFullName,
     this.payerAddress,
-    this.payerCard,
   });
 
   Map<String, dynamic> MapToJson() => {
-    'name': payerName,
-    'payerPhone': payerPhone,
-    'payerCpf': payerCpf,
-    'payerAddress': payerAddress?.jsonFromMap(),
-    'payerCard': payerCard?.jsonFromMap(),
+    'person_type': 1,
+    'taxpayer_id': payerCpf,
+    'personal_name': payerName,
+    'telephone': payerPhone,
+    'email': payerEmail,
+    'address': payerAddress!.jsonFromMap(),
   };
 }

@@ -6,7 +6,6 @@ class AppRoutes {
   static const AUTH_OR_HOME = '/';
 
   static const LOGIN = '/login';
-  // static const SIGNUP = '/signup';
 
   static const INDEX = '/index';
 
@@ -14,17 +13,23 @@ class AppRoutes {
   static const DETAILPAYERPAGE = '/detailpayerpage';
   static const EDITPAYERPAGE = '/editpayerpage';
 
+  static const CREATEPRODUCTPAGE = '/createproductpage';
+  static const DETAILPRODUCTPAGE = '/detailproductpage';
+  static const EDITPRODUCTPAGE = '/editproductpage';
+
   static Map<String, WidgetBuilder> routes = {
     AUTH_OR_HOME: (ctx) => const AuthOrIndexPage(),
-    // AUTH_OR_HOME: (ctx) => AuthOrIndexPage(),
 
-    // LOGIN: (ctx) => LoginPage(),
-    // // SIGNUP: (ctx) => const SignUpPage(),
+    LOGIN: (ctx) => const LoginAuthPage(),
 
     INDEX: (ctx) => IndexPage(),
 
     CREATEPAYERPAGE: (ctx) => const CreatePayerPage(),
     DETAILPAYERPAGE: (ctx) => const DetailPayerPage(),
     EDITPAYERPAGE: (ctx) => const UpdatePayerPage(),
+
+    CREATEPRODUCTPAGE: (ctx) => const CreateProductPage(),
+    DETAILPRODUCTPAGE: (ctx) => const DetailProductPage(),
+    EDITPRODUCTPAGE: (ctx) => const UpdateProductPage(),
   };
 }

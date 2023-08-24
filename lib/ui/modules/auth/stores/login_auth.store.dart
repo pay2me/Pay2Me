@@ -10,7 +10,6 @@ part 'login_auth.store.g.dart';
 class LoginAuthStore = _LoginAuthStore with _$LoginAuthStore;
 
 abstract class _LoginAuthStore with Store, ChangeNotifier {
-
   @observable
   bool isLoading = false;
 
@@ -48,15 +47,13 @@ abstract class _LoginAuthStore with Store, ChangeNotifier {
     formKey.currentState?.save();
 
     try {
+      await Provider.of<ServicesAuthStore>(context, listen: false)
+          .login(userToForm);
 
-      await Provider.of<ServicesAuthStore>(context, listen: false).login(userToForm);
-      
       Navigator.of(context).pushReplacementNamed(
         AppRoutes.INDEX,
       );
-    
     } on FormatException catch (e) {
-      
       await showDialog<void>(
         context: context,
         builder: (ctx) => AlertDialog(
@@ -70,11 +67,10 @@ abstract class _LoginAuthStore with Store, ChangeNotifier {
           ],
         ),
       );
-
     }
 
     userToForm = SetUserMapper();
-    
+
     isLoading = false;
   }
 

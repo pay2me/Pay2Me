@@ -49,6 +49,22 @@ mixin _$CreatePayerStore on _CreatePayerStore, Store {
     });
   }
 
+  late final _$productsToDropdownAtom =
+      Atom(name: '_CreatePayerStore.productsToDropdown', context: context);
+
+  @override
+  List<DropdownMenuItem<dynamic>> get productsToDropdown {
+    _$productsToDropdownAtom.reportRead();
+    return super.productsToDropdown;
+  }
+
+  @override
+  set productsToDropdown(List<DropdownMenuItem<dynamic>> value) {
+    _$productsToDropdownAtom.reportWrite(value, super.productsToDropdown, () {
+      super.productsToDropdown = value;
+    });
+  }
+
   late final _$payerToFormAtom =
       Atom(name: '_CreatePayerStore.payerToForm', context: context);
 
@@ -63,6 +79,63 @@ mixin _$CreatePayerStore on _CreatePayerStore, Store {
     _$payerToFormAtom.reportWrite(value, super.payerToForm, () {
       super.payerToForm = value;
     });
+  }
+
+  late final _$cardToFormAtom =
+      Atom(name: '_CreatePayerStore.cardToForm', context: context);
+
+  @override
+  SetCardMapper get cardToForm {
+    _$cardToFormAtom.reportRead();
+    return super.cardToForm;
+  }
+
+  @override
+  set cardToForm(SetCardMapper value) {
+    _$cardToFormAtom.reportWrite(value, super.cardToForm, () {
+      super.cardToForm = value;
+    });
+  }
+
+  late final _$subscriptionToFormAtom =
+      Atom(name: '_CreatePayerStore.subscriptionToForm', context: context);
+
+  @override
+  SetSubscriptionMapper get subscriptionToForm {
+    _$subscriptionToFormAtom.reportRead();
+    return super.subscriptionToForm;
+  }
+
+  @override
+  set subscriptionToForm(SetSubscriptionMapper value) {
+    _$subscriptionToFormAtom.reportWrite(value, super.subscriptionToForm, () {
+      super.subscriptionToForm = value;
+    });
+  }
+
+  late final _$productToFormAtom =
+      Atom(name: '_CreatePayerStore.productToForm', context: context);
+
+  @override
+  SetProductMapper get productToForm {
+    _$productToFormAtom.reportRead();
+    return super.productToForm;
+  }
+
+  @override
+  set productToForm(SetProductMapper value) {
+    _$productToFormAtom.reportWrite(value, super.productToForm, () {
+      super.productToForm = value;
+    });
+  }
+
+  late final _$loadCreateClienteAsyncAction =
+      AsyncAction('_CreatePayerStore.loadCreateCliente', context: context);
+
+  @override
+  Future<void> loadCreateCliente(BuildContext context) {
+    return _$loadCreateClienteAsyncAction
+        .run(() => super.loadCreateCliente(context));
   }
 
   late final _$submitCreateFormAsyncAction =
@@ -94,7 +167,11 @@ mixin _$CreatePayerStore on _CreatePayerStore, Store {
     return '''
 isLoading: ${isLoading},
 formKey: ${formKey},
+productsToDropdown: ${productsToDropdown},
 payerToForm: ${payerToForm},
+cardToForm: ${cardToForm},
+subscriptionToForm: ${subscriptionToForm},
+productToForm: ${productToForm},
 formIsValid: ${formIsValid}
     ''';
   }
